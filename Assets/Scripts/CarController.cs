@@ -30,9 +30,9 @@ public class CarController : MonoBehaviour
             print(g.rightTrigger.ReadValue());
         }
         var keyboard = Keyboard.current;
-        forward += keyboard.wKey.isPressed ? 1 : 0;
-        forward -= keyboard.sKey.isPressed ? 1 : 0;
-        left += keyboard.lKey.IsPressed ? 1 : 0;
-        right += keyboard.rKey.IsPressed ? 1 : 0;
+        //forward += keyboard.wKey.isPressed ? 1 : 0;
+        //forward -= keyboard.sKey.isPressed ? 1 : 0;
+        //left += keyboard.lKey.IsPressed ? 1 : 0;
+        //right += keyboard.rKey.IsPressed ? 1 : 0;
     }
 }
