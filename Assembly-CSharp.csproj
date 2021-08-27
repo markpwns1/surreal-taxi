@@ -39,8 +39,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\lowres\scripts\PostProcessing.cs" />
+    <Compile Include="Assets\Scripts\ProceduralGenerator.cs" />
+    <None Include="Assets\Shaders\math.cginc" />
     <None Include="Assets\lowres\shaders\Screen Shader.shader" />
     <None Include="Assets\lowres\shaders\Gradient Skybox.shader" />
+    <None Include="Assets\Shaders\Floor.shader" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/Unity/2020.1.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
