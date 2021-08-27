@@ -54,14 +54,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\lowres\scripts\PostProcessing.cs" />
-    <Compile Include="Assets\Scripts\ProceduralGenerator.cs" />
-    <None Include="Assets\Shaders\math.cginc" />
     <Compile Include="Assets\Scripts\SentencesGenerator.cs" />
     <Compile Include="Assets\Scripts\SentencesSource.cs" />
+    <Compile Include="Assets\Scripts\ProceduralGenerator.cs" />
+    <Compile Include="Assets\Scripts\personscript.cs" />
+    <Compile Include="Assets\Scripts\otherScript.cs" />
+    <Compile Include="Assets\Scripts\CarScript.cs" />
+    <Compile Include="Assets\TestingGiveMeWordsButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\MarkovSharp.dll" />
     <None Include="Assets\Scripts\log4net.dll" />
+    <None Include="Assets\Shaders\math.cginc" />
     <None Include="Assets\lowres\shaders\Screen Shader.shader" />
     <None Include="Assets\Scripts\Sanford.Multimedia.Midi.dll" />
     <None Include="Assets\lowres\shaders\Gradient Skybox.shader" />

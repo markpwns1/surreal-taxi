@@ -8,23 +8,21 @@ using System.Linq;
 public class SentencesGenerator : MonoBehaviour
 {
     public List<SentencesSource> references;
+    public StringMarkov model;
     // Start is called before the first frame update
     void Start()
     {
         // Create a new model
-        var model = new StringMarkov(1);
+        model = new StringMarkov(1);
 
         foreach(SentencesSource source in references)
         {
             model.Learn(source.source);
         }
-
-        print(model.Walk().First());
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GenerateLines()
     {
-        
+        return model.Walk().First();
     }
 }
