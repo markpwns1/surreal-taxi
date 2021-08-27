@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aa627c9ba0b214d8df26a2096e037c, type: 3}
+  m_Name: RickAndMorty
+  m_EditorClassIdentifier: 
+  source: "To be fair, you have to have a very high IQ to understand Rick and Morty.
+    The humor is extremely subtle, and without a solid grasp of theoretical physics
+    most of the jokes will go over a typical viewer's head. There's also Rick's nihilistic
+    outlook, which is deftly woven into his characterisation - his personal philosophy
+    draws heavily from Narodnaya Volya literature, for instance. The fans understand
+    this stuff; they have the intellectual capacity to truly appreciate the depths
+    of these jokes, to realize that they're not just funny- they say something deep
+    about LIFE. As a consequence people who dislike Rick and Morty truly ARE idiots-
+    of course they wouldn't appreciate, for instance, the humour in Rick's existencial
+    catchphrase \"Wubba Lubba Dub Dub,\" which itself is a cryptic reference to Turgenev's
+    Russian epic Fathers and Sons I'm smirking right now just imagining one of those
+    addlepated simpletons scratching their heads in confusion as Dan Harmon's genius
+    unfolds itself on their television screens. What fools... how I pity them. \U0001F602
+    And yes by the way, I DO have a Rick and Morty tattoo. And no, you cannot see
+    it. It's for the ladies' eyes only- And even they have to demonstrate that they're
+    within 5 IQ points of my own beforehand."
