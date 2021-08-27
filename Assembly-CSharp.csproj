@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\lowres\scripts\PostProcessing.cs" />
     <Compile Include="Assets\Scripts\SentencesGenerator.cs" />
+    <Compile Include="Assets\Scripts\SentencesSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\MarkovSharp.dll" />
@@ -286,9 +287,6 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\2020.3.17f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="MarkovSharp">
       <HintPath>Assets\Scripts\MarkovSharp.dll</HintPath>
     </Reference>
@@ -297,6 +295,9 @@
     </Reference>
     <Reference Include="log4net">
       <HintPath>Assets\Scripts\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\2020.3.17f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -657,6 +658,14 @@
       <Project>{A9999E97-9897-F879-6702-D20B818084B7}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
+      <Project>{253EC772-C9C8-0F3C-BEDD-45530FB42D11}</Project>
+      <Name>Unity.Sysroot.Linux_x86_64</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64.csproj">
+      <Project>{A0D93BCD-73F8-CF21-2FD4-51C8BEC49109}</Project>
+      <Name>Unity.Toolchain.Win-x86_64-Linux-x86_64</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Editor.csproj">
       <Project>{008785D5-1596-4FA6-C4D9-1CD77DC21915}</Project>
       <Name>Unity.Timeline.Editor</Name>
@@ -684,6 +693,10 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{B8CDAFB4-431B-6B2F-5120-D9BB56CFCF0C}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
+      <Project>{BE45B8A0-B0E7-6870-8F5A-E82427561C96}</Project>
+      <Name>Unity.SysrootPackage.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

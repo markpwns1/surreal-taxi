@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aa627c9ba0b214d8df26a2096e037c, type: 3}
+  m_Name: Karen
+  m_EditorClassIdentifier: 
+  source: 'They''re scared. Karens recognize that if they faced consequences for
+    their actions they wouldn''t survive. They recognize that people standing up
+    to other Karens means their own Karen tactics may stop working.
+
+    
+
+    Of
+    course this is all part of the basic package. They started down this path because
+    they were something scare-adjacent at some point. Facing social conflict, disappointed
+    to not get what they want, frightened in that way an infant is when the slightest
+    thing goes wrong because they don''t know it''s not the end of the world. They
+    tried aggression and it got the results they wanted. Better yet, they get to
+    pretend they''re proactive. They''re not a maladjusted coward abusing others
+    and indulging their own desires. They''re a crusader calling out the injustice
+    (as they define it) and should be applauded because when everyone is treated
+    like them (ignore the constraints of reality) then America will be Great again.
+
+    
+
+    The
+    Karen worldview is constructed around them and people like them being right.
+    It''s a conflict coping mechanism that''s prevented them from learning to process
+    conflict any other way. Karens probably don''t know this consciously but their
+    subconscious is screaming it.'
