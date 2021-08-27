@@ -54,9 +54,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\lowres\scripts\PostProcessing.cs" />
+    <Compile Include="Assets\Scripts\SentencesGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Scripts\MarkovSharp.dll" />
+    <None Include="Assets\Scripts\log4net.dll" />
     <None Include="Assets\lowres\shaders\Screen Shader.shader" />
+    <None Include="Assets\Scripts\Sanford.Multimedia.Midi.dll" />
     <None Include="Assets\lowres\shaders\Gradient Skybox.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +282,15 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkovSharp">
+      <HintPath>Assets\Scripts\MarkovSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Sanford.Multimedia.Midi">
+      <HintPath>Assets\Scripts\Sanford.Multimedia.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>Assets\Scripts\log4net.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\2020.3.17f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

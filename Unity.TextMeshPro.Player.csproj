@@ -308,7 +308,13 @@
  <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/AOT/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="MarkovSharp">
- <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/MarkovSharp.dll</HintPath>
+ <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/Scripts/MarkovSharp.dll</HintPath>
+ </Reference>
+ <Reference Include="Sanford.Multimedia.Midi">
+ <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/Scripts/Sanford.Multimedia.Midi.dll</HintPath>
+ </Reference>
+ <Reference Include="log4net">
+ <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/Scripts/log4net.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/2020.3.17f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

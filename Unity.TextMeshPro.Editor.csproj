@@ -355,7 +355,13 @@
  <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
  </Reference>
  <Reference Include="MarkovSharp">
- <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/MarkovSharp.dll</HintPath>
+ <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/Scripts/MarkovSharp.dll</HintPath>
+ </Reference>
+ <Reference Include="Sanford.Multimedia.Midi">
+ <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/Scripts/Sanford.Multimedia.Midi.dll</HintPath>
+ </Reference>
+ <Reference Include="log4net">
+ <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Assets/Scripts/log4net.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/admin/Documents/Unity/surreal-taxi/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
