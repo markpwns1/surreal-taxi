@@ -23,6 +23,10 @@ public class CarController : MonoBehaviour
     public float maxTireAngle;
     public float tireSpeed, tireDriveSpeed;
 
+    public CarTilt tiltControls;
+
+
+
     private Transform body, frame, wheelParent;
     private Transform[] wheels;
 
@@ -30,7 +34,9 @@ public class CarController : MonoBehaviour
     private Vector3 surfaceNormal,
         previousVelocity, deltaV;
 
+    // controls
     private float gas, turn, brake, rotation;
+
     private float groundThreshold, tireRot, fTireRot;
     private bool ground;
 
@@ -148,7 +154,7 @@ public class CarController : MonoBehaviour
 
         if(turnDecay)
             turn = Mathf.Lerp(turn, 0, turnDecayLerp);
-        if (k.aKey.isPressed || k.leftAltKey.isPressed)
+        if (k.aKey.isPressed || k.leftArrowKey.isPressed)
             turn = Mathf.Lerp(turn, -1, turnLerp);
         if (k.dKey.isPressed || k.rightArrowKey.isPressed)
             turn = Mathf.Lerp(turn, 1, turnLerp);
@@ -231,22 +237,50 @@ public class CarController : MonoBehaviour
         float perpAcc = Vector3.Dot(deltaV, body.right);
         float normAcc = Vector3.Dot(deltaV, body.up);
 
-        Vector3 p = frame.localPosition;
-        frame.localPosition = new Vector3(
-            Mathf.Lerp(p.x, perpAcc / 12, 0.1f),
-            Mathf.Clamp(Mathf.Lerp(p.y, normAcc / 4, 0.075f), -0.5f, 100),
-            Mathf.Lerp(p.z, parAcc / 8, .05f));
-
-        p = frame.rotation.eulerAngles;
-        Quaternion q = Quaternion.identity;
-        frame.localRotation = Quaternion.Euler(
-            Mathf.Clamp(parAcc * 5, -20, 20),
-            0,
-            -perpAcc * 4);
+        tiltControls.UpdateCarTilt(frame, parAcc, perpAcc, normAcc);
 
         if (Mathf.Abs(perpAcc) > 5)
             wheelParent.localRotation = Quaternion.Euler(0, 0, -perpAcc * 2);
         else
             wheelParent.localRotation = Quaternion.identity;
+    }
+
+    [System.Serializable]
+    public class CarTilt
+    {
+        [Header("Position")]
+        public CarTiltAxis paraMove;
+        public CarTiltAxis normMove, perpMove;
+
+        [Header("rotation")]
+        public CarTiltAxis paraTilt;
+        public CarTiltAxis perpTilt;
+
+        public void UpdateCarTilt(Transform t, float paraAcc, float perpAcc, float normAcc)
+        {
+            t.localPosition = new Vector3(
+                perpMove.UpdateVal(perpAcc),
+                normMove.UpdateVal(normAcc),
+                paraMove.UpdateVal(normAcc));
+
+            t.localRotation = Quaternion.Euler(
+                paraTilt.UpdateVal(paraAcc),
+                0, perpTilt.UpdateVal(perpAcc));
+        }
+
+        [System.Serializable]
+        public class CarTiltAxis
+        {
+            private float val;
+            [Range(0, 1)]
+            public float lerp = 0.1f;
+            public float scale, min = -50, max = 50;
+
+            public float UpdateVal(float f)
+            {
+                val = Mathf.Lerp(val, f * scale, lerp);
+                return Mathf.Clamp(val, min, max);
+            }
+        }
     }
 }

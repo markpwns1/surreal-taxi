@@ -305,9 +305,35 @@ MonoBehaviour:
   turnLerp: 0.1
   turnDecayLerp: 0.05
   reverseThreshhold: 0.5
-  maxTireAngle: 75
+  maxTireAngle: 55
   tireSpeed: 1
-  tireDriveSpeed: 1
+  tireDriveSpeed: 10
+  tiltControls:
+    paraMove:
+      lerp: 0.05
+      scale: 0.125
+      min: -0.15
+      max: 0.3
+    normMove:
+      lerp: 0.075
+      scale: 0.25
+      min: -0.4
+      max: 50
+    perpMove:
+      lerp: 0.1
+      scale: 0.083333336
+      min: -0.5
+      max: 0.5
+    paraTilt:
+      lerp: 0.075
+      scale: 3
+      min: -15
+      max: 8
+    perpTilt:
+      lerp: 0.2
+      scale: -4
+      min: -50
+      max: 50
 --- !u!1 &586316110
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671951656b4262b4094c15de2bb84e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpMod: 0.05
+  lerpMod: 0.025
   follow: {fileID: 142443551}
   lookAt: {fileID: 870283587}
 --- !u!1 &1420314248
