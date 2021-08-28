@@ -1,17 +1,11 @@
-﻿Shader "Custom/Objects"
+﻿Shader "Custom/Surface"
 {
     Properties
     {
-        _TileTex("Tile Texture", 2D) = "white" {}
-        _Tiling("Tiling", Float) = 1.0
-        _LightColour ("Light Colour", Color) = (1,1,1,1)
-        _DarkColour("Dark Colour", Color) = (1,1,1,1)
+        _MainTex("Tile Texture", 2D) = "white" {}
+        _Colour("Colour", Color) = (1,1,1,1)
         _MinBrightness("Minimum Brightness", Float) = 0.3
-        _FadeDistanceBegin("Fade Distance Begin", Float) = 10.0
-        _FadeDistanceEnd("Fade Distance Ebd", Float) = 20.0
     }
-
-    
 
     SubShader
     {
@@ -24,20 +18,15 @@
 
         #include "math.cginc"
 
-        sampler2D _TileTex;
+        sampler2D _MainTex;
 
         struct Input
         {
-            float2 uv_TileTex;
-            float3 worldPos;
+            float2 uv_MainTex;
         };
 
-        fixed3 _LightColour;
-        fixed3 _DarkColour;
-        fixed _Tiling;
+        fixed3 _Colour;
         fixed _MinBrightness;
-        fixed _FadeDistanceBegin;
-        fixed _FadeDistanceEnd;
 
         half4 LightingBasic(SurfaceOutput s, half3 lightDir, half atten) {
             half NdotL = dot(s.Normal, lightDir);
@@ -76,8 +65,8 @@
             // //c = lerp(_LightColour, c, clamp(0, 1, 5.0 * dot(normalize(IN.viewDir), o.Normal)));//lerp_inv_01(_FadeDistanceBegin, _FadeDistanceEnd, length(IN.worldPos - _WorldSpaceCameraPos)));
             // c = lerp(_LightColour, c, max(dist_mod, NdotL * 0.8));
 
-            fixed3 c = lerp(_LightColour, _DarkColour, step(0.5, tex2D(_TileTex, IN.uv_TileTex * _Tiling).r));
-            c = lerp(c, _LightColour, lerp_inv_01(_FadeDistanceBegin, _FadeDistanceEnd, length(IN.worldPos - _WorldSpaceCameraPos)));
+            fixed3 c = tex2D(_MainTex, IN.uv_MainTex) * _Colour;
+
             o.Albedo = c;
             o.Alpha = 1.0;
         }
