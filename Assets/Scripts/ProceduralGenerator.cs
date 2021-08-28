@@ -14,9 +14,11 @@ public class ProceduralGenerator : MonoBehaviour
         public float maxAngle;
         public float minSize;
         public float maxSize;
+        public bool repeat;
     }
 
     public MapObject[] mapObjects;
+    public Color[] colours;
     public float mapSize;
 
     void Start()
@@ -27,13 +29,21 @@ public class ProceduralGenerator : MonoBehaviour
             {
                 Vector3 origin = new Vector3(Random.Range(-mapSize / 2f, mapSize / 2f), 500, Random.Range(-mapSize / 2f, mapSize / 2f));
 
-                if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit))
-                {
-                    var instance = Instantiate(obj.prefab);
-                    instance.transform.position = hit.point + Vector3.up * Random.Range(obj.minHeight, obj.maxHeight);
-                    instance.transform.Rotate(new Vector3(Random.Range(0f, obj.maxAngle), Random.Range(0f, 360f), Random.Range(0f, obj.maxAngle)));
-                    instance.transform.localScale = Vector3.one * Random.Range(obj.minSize, obj.maxSize);
-                }
+                var valid = false;
+                var j = 0;
+                do {
+                    if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit) && hit.collider.gameObject.tag == "Floor")
+                    {
+                        var instance = Instantiate(obj.prefab);
+                        instance.transform.position = hit.point + Vector3.up * Random.Range(obj.minHeight, obj.maxHeight);
+                        instance.transform.Rotate(new Vector3(Random.Range(0f, obj.maxAngle), Random.Range(0f, 360f), Random.Range(0f, obj.maxAngle)));
+                        instance.transform.localScale = Vector3.one * Random.Range(obj.minSize, obj.maxSize);
+                        valid = true;
+                        instance.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_DarkColour", colours[Random.Range(0, colours.Length)]);
+                    }
+
+                    j++;
+                } while (obj.repeat && !valid && j < 100);
             }
         }
     }
