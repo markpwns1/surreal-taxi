@@ -210,7 +210,7 @@ public class CarController : MonoBehaviour
 
     private void RunWheels()
     {
-        float rotDiff = rb.velocity.magnitude * tireSpeed;
+        float rotDiff = Vector3.Dot(rb.velocity, body.forward) * tireSpeed;
         tireRot = LoopAngle(tireRot + rotDiff);
 
         Quaternion q = Quaternion.Euler(Vector3.right * tireRot);
