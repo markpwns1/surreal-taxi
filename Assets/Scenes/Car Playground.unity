@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &142443551 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5489220339749954719, guid: b0dabd236fe607c4c9ad5ce6cbad9806,
-    type: 3}
-  m_PrefabInstance: {fileID: 5489220339619111040}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &586316110
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,17 +151,17 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.756
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -222,12 +216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &870283587 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5489220339924195779, guid: b0dabd236fe607c4c9ad5ce6cbad9806,
-    type: 3}
-  m_PrefabInstance: {fileID: 5489220339619111040}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1050215290
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +253,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.48920134, g: 0.74857914, b: 0.8018868, a: 1}
+  m_BackGroundColor: {r: 0.7960785, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -324,9 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671951656b4262b4094c15de2bb84e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpMod: 0.025
-  follow: {fileID: 142443551}
-  lookAt: {fileID: 870283587}
 --- !u!1 &1471241999
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +509,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3234244561604911510, guid: b0dabd236fe607c4c9ad5ce6cbad9806,
+        type: 3}
+      propertyPath: centreLerp
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: 5489220339330841561, guid: b0dabd236fe607c4c9ad5ce6cbad9806,
         type: 3}
       propertyPath: m_Name
