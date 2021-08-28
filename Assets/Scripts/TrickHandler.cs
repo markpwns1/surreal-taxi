@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class TrickHandler : MonoBehaviour
 {
-    enum TrickMove
+    public enum TrickMove
     {
         UP,
         DOWN,
@@ -13,99 +13,109 @@ public class TrickHandler : MonoBehaviour
         RIGHT
     }
 
+    public enum TrickState
+    {
+        NONE,
+        IN_PROCESS,
+        FAILED,
+        SUCCESS
+    }
+
     public float trickDuration;
+    public int numberOfTricks;
 
     private List<TrickMove> tricks;
     private float nextTrickEnd;
-    private bool failed = true;
-
-    void Start()
-    {
-        GenerateTrickMoves();
-        PrintState();
-    }
+    private TrickState state = TrickState.NONE;
 
     void Update()
     {
-        if (!failed)
+        if (state == TrickState.IN_PROCESS)
         {
-            if (Time.time < nextTrickEnd)
+            if (Time.time < nextTrickEnd && tricks.Count > 0)
             {
-                if (tricks[0] == TrickMove.UP && Keyboard.current["W"].IsPressed())
+                if (tricks[0] == TrickMove.UP 
+                    && Keyboard.current.wKey.wasPressedThisFrame
+                    && !Keyboard.current.sKey.wasPressedThisFrame
+                    && !Keyboard.current.aKey.wasPressedThisFrame
+                    && !Keyboard.current.dKey.wasPressedThisFrame)
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
-                    PrintState();
                 }
-                else if (tricks[0] == TrickMove.DOWN && Keyboard.current["S"].IsPressed())
+                else if (tricks[0] == TrickMove.DOWN
+                    && !Keyboard.current.wKey.wasPressedThisFrame
+                    && Keyboard.current.sKey.wasPressedThisFrame
+                    && !Keyboard.current.aKey.wasPressedThisFrame
+                    && !Keyboard.current.dKey.wasPressedThisFrame)
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
-                    PrintState();
                 }
-                else if (tricks[0] == TrickMove.LEFT && Keyboard.current["A"].IsPressed())
+                else if (tricks[0] == TrickMove.LEFT
+                    && !Keyboard.current.wKey.wasPressedThisFrame
+                    && !Keyboard.current.sKey.wasPressedThisFrame
+                    && Keyboard.current.aKey.wasPressedThisFrame
+                    && !Keyboard.current.dKey.wasPressedThisFrame)
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
-                    PrintState();
                 }
-                else if (tricks[0] == TrickMove.RIGHT && Keyboard.current["D"].IsPressed())
+                else if (tricks[0] == TrickMove.RIGHT
+                    && !Keyboard.current.wKey.wasPressedThisFrame
+                    && !Keyboard.current.sKey.wasPressedThisFrame
+                    && !Keyboard.current.aKey.wasPressedThisFrame
+                    && Keyboard.current.dKey.wasPressedThisFrame)
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
-                    PrintState();
+                }
+                else if (Keyboard.current.wKey.wasPressedThisFrame
+                    || Keyboard.current.sKey.wasPressedThisFrame
+                    || Keyboard.current.aKey.wasPressedThisFrame
+                    || Keyboard.current.dKey.wasPressedThisFrame)
+                {
+                    state = TrickState.FAILED;
                 }
             }
             else if (tricks.Count > 0)
             {
-                failed = true;
-                PrintState();
+                state = TrickState.FAILED;
+            }
+            if (tricks.Count == 0)
+            {
+                state = TrickState.SUCCESS;
             }
         }
     }
 
-    void GenerateTrickMoves()
+    public void GenerateTrickMoves()
     {
-        failed = false;
+        state = TrickState.IN_PROCESS;
         nextTrickEnd = Time.time + trickDuration;
         tricks = new List<TrickMove>();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < numberOfTricks; i++)
         {
             tricks.Add((TrickMove) Random.Range(0, 4));
         }
     }
 
-    void PrintState()
+    public TrickState GetTrickState()
     {
-        if (!failed)
+        return state;
+    }
+
+    public TrickMove GetCurrentMove()
+    {
+        if (state == TrickState.IN_PROCESS)
         {
-            if (tricks.Count > 0)
-            {
-                switch (tricks[0])
-                {
-                    case (TrickMove.UP):
-                        print("UP");
-                        break;
-                    case (TrickMove.DOWN):
-                        print("DOWN");
-                        break;
-                    case (TrickMove.LEFT):
-                        print("LEFT");
-                        break;
-                    case (TrickMove.RIGHT):
-                        print("RIGHT");
-                        break;
-                }
-            }
-            else
-            {
-                print("SUCCESS");
-                failed = true;
-            }
+            return tricks[0];
         }
-        else
-        {
-            print("FAILED");
-        }
+        return 0;
+    }
+
+    public float TimeLeft()
+    {
+        return nextTrickEnd - Time.time;
     }
 }
