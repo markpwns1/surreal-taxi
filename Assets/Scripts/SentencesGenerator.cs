@@ -13,7 +13,7 @@ public class SentencesGenerator : MonoBehaviour
     void Start()
     {
         // Create a new model
-        model = new StringMarkov(1);
+        model = new StringMarkov(2);
 
         foreach(SentencesSource source in references)
         {
