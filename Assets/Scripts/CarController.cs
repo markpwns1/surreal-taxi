@@ -196,16 +196,24 @@ public class CarController : MonoBehaviour
     private void UpdatePositions()
     {
         body.position = rb.position;
+        ground = false;
 
         RaycastHit rayHit;
-        Physics.Raycast(rb.position, -body.up, out rayHit);
+        Physics.Raycast(rb.position + body.forward * 3.5f, 
+            -body.up, out rayHit);
         ground = rayHit.distance < groundThreshold;
         if (ground) surfaceNormal = rayHit.normal;
         else
         {
-            Physics.Raycast(rb.position, Vector3.down, out rayHit);
+            Physics.Raycast(rb.position, -body.up, out rayHit);
             ground = rayHit.distance < groundThreshold;
             if (ground) surfaceNormal = rayHit.normal;
+            else
+            {
+                Physics.Raycast(rb.position, Vector3.down, out rayHit);
+                ground = rayHit.distance < groundThreshold;
+                if (ground) surfaceNormal = rayHit.normal;
+            }
         }
 
         body.up = Vector3.Lerp(body.up, surfaceNormal, .2f);
@@ -257,7 +265,8 @@ public class CarController : MonoBehaviour
         else
             wheelParent.localRotation = Quaternion.identity;
 
-        RunParticles(parAcc, perpAcc, normAcc);
+        if(ground)
+            RunParticles(parAcc, perpAcc, normAcc);
     }
 
     private void RunParticles(float para, float perp, float norm)
