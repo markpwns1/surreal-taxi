@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float lerpMod;
-    public Transform follow, lookAt;
-
-    private void FixedUpdate()
+    public void Follow(Vector3 pos, Vector3 lookAt)
     {
-    }
-
-    private void LateUpdate()
-    {
-        transform.position = Vector3.Lerp(transform.position,
-            follow.position, lerpMod);
+        transform.position = pos;
         transform.LookAt(lookAt);
     }
 }

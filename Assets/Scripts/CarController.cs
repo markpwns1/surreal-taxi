@@ -8,7 +8,7 @@ public class CarController : MonoBehaviour
 {
     [Header("Basic Attributes")]
     public float accelaration;
-    public float turnForce, backupTurnForce, brakeForce;
+    public float turnForce, backupTurnForce, airTurnForce, brakeForce;
     [Range(0, 1f)]
     public float wheelFriction, driftFriction, maxBrakeFriction;
 
@@ -22,6 +22,8 @@ public class CarController : MonoBehaviour
     [Header("Visual Effect Tuning")]
     public float maxTireAngle;
     public float tireSpeed, tireDriveSpeed;
+    [Range(0, 2)]
+    public float driftParticleIntensity, driveParticleIntensity;
 
     public CarTilt tiltControls;
 
@@ -29,6 +31,8 @@ public class CarController : MonoBehaviour
 
     private Transform body, frame, wheelParent;
     private Transform[] wheels;
+
+    private ParticleSystem[] driftParticles;
 
     private Rigidbody rb;
     private Vector3 surfaceNormal,
@@ -41,32 +45,30 @@ public class CarController : MonoBehaviour
     private bool ground;
 
 
-    private Vector3 debugVec1, debugVec2, debugVec3;
+    //private Vector3 debugVec1, debugVec2, debugVec3;
 
-    private void OnDrawGizmos()
-    {
-        if (!body)
-            return;
-        Gizmos.matrix = Matrix4x4.Translate(body.position);
-        Gizmos.color = new Color(1, 0, 0);
-        DrawGizmoArrow(debugVec1);
-        Gizmos.color = new Color(0, 1, 0);
-        DrawGizmoArrow(debugVec2);
-        Gizmos.color = new Color(0, 0, 1);
-        DrawGizmoArrow(debugVec3);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (!body)
+    //        return;
+    //    Gizmos.matrix = Matrix4x4.Translate(body.position);
+    //    Gizmos.color = new Color(1, 0, 0);
+    //    DrawGizmoArrow(debugVec1);
+    //    Gizmos.color = new Color(0, 1, 0);
+    //    DrawGizmoArrow(debugVec2);
+    //    Gizmos.color = new Color(0, 0, 1);
+    //    DrawGizmoArrow(debugVec3);
+    //}
 
-    private void DrawGizmoArrow(Vector3 tip)
-    {
-        Vector3 tail = Vector3.zero;
-        float headWidth = tip.magnitude / 8;
-        Gizmos.DrawLine(tip, tail);
-        tail = tip * .75f;
-        Gizmos.DrawLine(tip, tail + Vector3.left * headWidth);
-        Gizmos.DrawLine(tip, tail + Vector3.right * headWidth);
-        //Gizmos.DrawLine(tip, tail + Vector3.forward * headWidth);
-        //Gizmos.DrawLine(tip, tail + Vector3.back * headWidth);
-    }
+    //private void DrawGizmoArrow(Vector3 tip)
+    //{
+    //    Vector3 tail = Vector3.zero;
+    //    float headWidth = tip.magnitude / 8;
+    //    Gizmos.DrawLine(tip, tail);
+    //    tail = tip * .75f;
+    //    Gizmos.DrawLine(tip, tail + Vector3.left * headWidth);
+    //    Gizmos.DrawLine(tip, tail + Vector3.right * headWidth);
+    //}
 
     // Start is called before the first frame update
     void Start()
@@ -79,20 +81,23 @@ public class CarController : MonoBehaviour
         wheelParent = body.GetChild(1);
         wheels = wheelParent.GetComponentsInChildren<Transform>().
             Where(t => t != wheelParent).ToArray();
+
+        Transform particleParent = body.GetChild(2);
+        driftParticles = particleParent.GetChild(0).GetComponentsInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateControls();
-        Turn();
-        UpdatePositions();
-        RunWheels();
-        RunFrame();
     }
 
     private void FixedUpdate()
     {
+        UpdatePositions();
+        Turn();
+        RunWheels();
+        RunFrame();
         previousVelocity = rb.velocity;
         if (ground)
         {
@@ -171,13 +176,20 @@ public class CarController : MonoBehaviour
 
     private void Turn()
     {
-        float v = Vector3.Dot(rb.velocity, body.forward);
-        float diff = turn * v * Time.deltaTime;
-        if (v > 0)
-            diff *= turnForce;
+        if (ground)
+        {
+            float v = Vector3.Dot(rb.velocity, body.forward);
+            float diff = turn * v * Time.fixedDeltaTime;
+            if (v > 0)
+                diff *= turnForce;
+            else
+                diff *= backupTurnForce;
+            rotation = LoopAngle(rotation + diff);
+        }
         else
-            diff *= backupTurnForce;
-        rotation = LoopAngle(rotation + diff);
+        {
+            rotation = LoopAngle(rotation + turn * airTurnForce);
+        }
     }
 
     private void UpdatePositions()
@@ -243,6 +255,31 @@ public class CarController : MonoBehaviour
             wheelParent.localRotation = Quaternion.Euler(0, 0, -perpAcc * 2);
         else
             wheelParent.localRotation = Quaternion.identity;
+
+        RunParticles(parAcc, perpAcc, normAcc);
+    }
+
+    private void RunParticles(float para, float perp, float norm)
+    {
+        foreach(ParticleSystem p in driftParticles)
+        {
+            if (perp < 0)
+                p.transform.localRotation = Quaternion.Euler(Vector3.up * 90);
+            else
+                p.transform.localRotation = Quaternion.Euler(Vector3.down * 90);
+        }
+        int n = (int)(Mathf.Pow(perp, 2));
+        if (n > 1)
+            n = (int)(n * driftParticleIntensity);
+
+        driftParticles[0].Emit(n);
+        driftParticles[1].Emit(n);
+
+        n = (int)(Mathf.Pow(perp / 2, 2));
+        if (n > 1)
+            n = (int)(n * driftParticleIntensity);
+        driftParticles[2].Emit(n);
+        driftParticles[3].Emit(n);
     }
 
     [System.Serializable]
