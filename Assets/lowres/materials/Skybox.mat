@@ -114,8 +114,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.75, g: 0.8427419, b: 1, a: 1}
-    - _Color2: {r: 0.43867922, g: 0.5686692, b: 1, a: 1}
+    - _Color1: {r: 0.24056602, g: 0.5253538, b: 1, a: 1}
+    - _Color2: {r: 0.15566039, g: 0.37608388, b: 1, a: 1}
     - _Color3: {r: 0, g: 0.16379309, b: 1, a: 1}
     - _ColorBackup: {r: 1, g: 1, b: 1, a: 1}
     - _DarkColor: {r: 1, g: 1, b: 1, a: 1}
