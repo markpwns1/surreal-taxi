@@ -10152,12 +10152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7a599274938d143b37c7b6df8551ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelaration: 80
+  accelaration: 200
   turnForce: 5
   backupTurnForce: 15
   airTurnForce: 9
   brakeForce: 50
-  wheelFriction: 0.001
+  wheelFriction: 0.05
   driftFriction: 0.05
   maxBrakeFriction: 0.2
   gasLerp: 0.1
