@@ -22,14 +22,16 @@ public class CustomerTrigger : MonoBehaviour
         if (pickup)
         {
             ScoreScript.countdown = true;
-            ScoreScript.theScore += 1000;
             Destroy(transform.parent.gameObject);
+            if(!dh) dh = FindObjectOfType<DialogueHandler>();
             dh.StartDialogue();
         }
         else {
             ScoreScript.countdown = false;
             Destroy(gameObject);
+            if (!dh) dh = FindObjectOfType<DialogueHandler>();
             dh.Reset();
+            ScoreScript.theScore += Random.Range(600, 1000);
         }
     }
 }

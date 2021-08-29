@@ -43,7 +43,7 @@ public class TrickUI : MonoBehaviour
 
     void Update()
     {
-        if(trickHandler.GetCurrentTrick() != TrickHandler.TrickMove.NONE)
+        if(trickHandler && trickHandler.GetCurrentTrick() != TrickHandler.TrickMove.NONE)
         {
             loadingBar.sizeDelta = new Vector2(80f * (1.0f - (Time.time - trickHandler.time) / trickHandler.inputWindow), 5);
         }

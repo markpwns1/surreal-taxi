@@ -10,7 +10,7 @@ public class CameraTargetController : MonoBehaviour
 
     private Rigidbody rb;
     private Transform targetTransform;
-    private CameraController cam;
+    public CameraController cam;
     private Vector3 target;
 
     private float rotX, rotY;
@@ -19,7 +19,7 @@ public class CameraTargetController : MonoBehaviour
     void Start()
     {
         targetTransform = transform.GetChild(0);
-        cam = Camera.main.GetComponent<CameraController>();
+        cam = GameObject.FindObjectOfType<CameraController>();
         target = targetTransform.position;
 
         rb = transform.parent.parent.GetComponentInChildren<Rigidbody>();

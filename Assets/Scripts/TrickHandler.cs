@@ -113,6 +113,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
+                        ScoreScript.stunts++;
                     }
                     else if (currentTrick == TrickMove.DOWN
                         && !up
@@ -125,6 +126,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
+                        ScoreScript.stunts++;
                     }
                     else if (currentTrick == TrickMove.LEFT
                         && !up
@@ -137,6 +139,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
+                        ScoreScript.stunts++;
                     }
                     else if (currentTrick == TrickMove.RIGHT
                         && !up
@@ -149,6 +152,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
+                        ScoreScript.stunts++;
                     }
                     else if (up
                         || down

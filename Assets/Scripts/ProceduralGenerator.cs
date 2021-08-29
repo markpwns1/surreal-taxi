@@ -135,6 +135,8 @@ public class ProceduralGenerator : MonoBehaviour
             yield return null;
             var placement = ForcePlaceObject(player, true, true);
             placement.instance.transform.position = placement.hit.point + Vector3.up * 3f;
+            MainMenu.playerInstance = placement.instance;
+            placement.instance.SetActive(false);
         }
     }
 

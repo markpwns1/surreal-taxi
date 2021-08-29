@@ -103,7 +103,7 @@ public class DialogueHandler : MonoBehaviour
                 currentlyPrinted = null;
             }
         }
-        else if (currentlyPrinted == null && buffer.Count == 0 && Mouse.current.leftButton.wasPressedThisFrame)
+        else if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Reset();
         }

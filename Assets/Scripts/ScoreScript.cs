@@ -10,19 +10,11 @@ public class ScoreScript : MonoBehaviour
 
     public GameObject scoreText;
     public static float theScore;
+    public static int stunts;
     public static bool countdown=false;
 
-   
-
     void Update() {
-
-
-       scoreText.GetComponent<Text>().text = "SALARY: " + Mathf.Round(theScore) + "$";
-        if (countdown)
-        {
-            theScore -= Time.deltaTime;
-
-        }
+        scoreText.GetComponent<Text>().text = "CAPITAL GENERATED: " + Mathf.Round(theScore) + "$ \nSTUNTS PERFORMED: " + stunts;
     }
 
 
