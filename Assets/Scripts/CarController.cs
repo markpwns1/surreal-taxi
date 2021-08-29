@@ -24,6 +24,7 @@ public class CarController : MonoBehaviour
     public float tireSpeed, tireDriveSpeed;
     [Range(0, 2)]
     public float driftParticleIntensity, driveParticleIntensity;
+    public int maxparticlesPerFrame = 50;
 
     public CarTilt tiltControls;
 
@@ -281,13 +282,14 @@ public class CarController : MonoBehaviour
         int n = (int)(Mathf.Pow(perp, 2));
         if (n > 1)
             n = (int)(n * driftParticleIntensity);
-
+        n = Mathf.Clamp(n, 0, maxparticlesPerFrame);
         driftParticles[0].Emit(n);
         driftParticles[1].Emit(n);
 
         n = (int)(Mathf.Pow(perp / 2, 2));
         if (n > 1)
             n = (int)(n * driftParticleIntensity);
+        n = Mathf.Clamp(n, 0, maxparticlesPerFrame);
         driftParticles[2].Emit(n);
         driftParticles[3].Emit(n);
     }

@@ -5157,6 +5157,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5451354108560329278}
+  - component: {fileID: 2903819090592659241}
+  - component: {fileID: 6636186403926701959}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -5182,6 +5184,37 @@ Transform:
   m_Father: {fileID: 5489220339330841562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2903819090592659241
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678335121129640068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d7f295aee05c97e46b94d65c7a2b0b6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6636186403926701959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678335121129640068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2936039788b38b842a0f5e90e6ba2ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4970931558080629181
 GameObject:
   m_ObjectHideFlags: 0
@@ -10124,6 +10157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5489220339330841562}
   - component: {fileID: 5489220339330841563}
+  - component: {fileID: 2027658184882231167}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -10178,6 +10212,7 @@ MonoBehaviour:
   tireDriveSpeed: 4
   driftParticleIntensity: 0.75
   driveParticleIntensity: 0.1
+  maxparticlesPerFrame: 50
   tiltControls:
     paraMove:
       lerp: 0.05
@@ -10204,6 +10239,19 @@ MonoBehaviour:
       scale: -4
       min: -50
       max: 50
+--- !u!114 &2027658184882231167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489220339330841561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837e90ffcbb8d974abc9a946cff13304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnY: -50
 --- !u!1 &5489220339374439814
 GameObject:
   m_ObjectHideFlags: 0
