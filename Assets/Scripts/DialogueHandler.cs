@@ -19,7 +19,7 @@ public class DialogueHandler : MonoBehaviour
     private float nextPrintTime;
     private float printDelay;
 
-    public void StartDialogue()
+    private void Start()
     {
         dialogue = gameObject.GetComponent<Text>();
         buffer = new List<string>();
@@ -29,6 +29,11 @@ public class DialogueHandler : MonoBehaviour
         printDelay = defaultPrintDelay / 60f;
 
         nextPrintTime = Time.time;
+    }
+
+    public void StartDialogue()
+    {
+        Start();
 
         string generated = generator.GenerateLines();
         string[] sentences = generated.Split('.');
