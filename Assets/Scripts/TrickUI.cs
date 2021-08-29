@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class TrickUI : MonoBehaviour
 {
-    
-    public void NewTrick()
+    private TrickHandler trickHandler;
+    public void Init(TrickHandler trickHandler)
     {
+        this.trickHandler = trickHandler;
+    }
 
+    public void OnTrickChange()
+    {
+        //if()
     }
 
 }

@@ -22,9 +22,17 @@ public class TrickHandler : MonoBehaviour
 
     private bool up, down, left, right;
 
+    private TrickUI ui;
+
+    void Start()
+    {
+        ui = GameObject.FindObjectOfType<TrickUI>();
+    }
+
     public void StartTricks()
     {
         currentTrick = TrickMove.NONE;
+        ui.OnTrickChange();
         time = 0;
         onAir = true;
     }
@@ -33,6 +41,7 @@ public class TrickHandler : MonoBehaviour
     {
         currentTrick = TrickMove.NONE;
         onAir = false;
+        ui.OnTrickChange();
     }
 
     public void ToggleTricks()
@@ -61,6 +70,7 @@ public class TrickHandler : MonoBehaviour
                         currentTrick = (TrickMove)Random.Range(1, 5);
                         time = Time.time;
                         failed = false;
+                        ui.OnTrickChange();
                     }
                 }
                 else
@@ -69,6 +79,7 @@ public class TrickHandler : MonoBehaviour
                     {
                         currentTrick = (TrickMove)Random.Range(1, 5);
                         time = Time.time;
+                        ui.OnTrickChange();
                     }
                 }
             }
