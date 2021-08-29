@@ -48,6 +48,8 @@ public class CarController : MonoBehaviour
     private bool tricks = false;
     public static bool ground;
 
+    private float groundTime;
+
 
     //private Vector3 debugVec1, debugVec2, debugVec3;
 
@@ -225,7 +227,10 @@ public class CarController : MonoBehaviour
         body.up = Vector3.Lerp(body.up, surfaceNormal, .2f);
         body.RotateAround(body.position, body.up, rotation);
 
-        if(!ground && !tricks)
+        if (ground)
+            groundTime = Time.time;
+
+        if(!ground && !tricks && Time.time > groundTime + .25f)
         {
             tricks = true;
             trickHandler.StartTricks();

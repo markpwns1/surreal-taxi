@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysMusic: {fileID: 9101508151541993618}
   groundOnlyAudio: {fileID: 5781625977075317646}
-  lerp: 0
+  lerp: 0.1
 --- !u!82 &9101508151541993618
 AudioSource:
   m_ObjectHideFlags: 0

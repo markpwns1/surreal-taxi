@@ -8,6 +8,7 @@ public class DialogueHandler : MonoBehaviour
 {
     public SentencesGenerator generator;
     public Image profile;
+    public GameObject bg;
 
     public float defaultPrintDelay = 3f;
     public int maxDisplay = 5;
@@ -30,6 +31,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void Reset()
     {
+        bg.SetActive(false);
         talking = false;
         profile.enabled = false;
         dialogue = gameObject.GetComponent<Text>();
@@ -46,14 +48,17 @@ public class DialogueHandler : MonoBehaviour
     {
         Reset();
 
+        bg.SetActive(true);
         talking = true;
         profile.enabled = true;
         string generated = generator.GenerateLines();
-        string[] sentences = generated.Split('\n');
-        foreach (string sentence in sentences)
-        {
-            FeedLine(sentence.Trim());
-        }
+        //string[] sentences = generated.Split('\n');
+        //foreach (string sentence in sentences)
+        //{
+        //    FeedLine(sentence.Trim());
+        //}
+        FeedLine(generated.Split('.')[0]);
+        FeedLine(generated.Split('.')[1]);
         FeedLine("(LEFT CLICK TO END DIALOGUE)");
         print(generated);
     }
