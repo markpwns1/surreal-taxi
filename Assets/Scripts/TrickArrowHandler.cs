@@ -9,30 +9,37 @@ public class TrickArrowHandler : MonoBehaviour
     private Image image;
     void Start()
     {
-        trickHandler = GetComponent<TrickHandler>();
         image = GetComponent<Image>();
+        trickHandler = GameObject.FindObjectOfType<TrickHandler>();
     }
 
     void Update()
     {
-        image.enabled = true;
-        switch (trickHandler.GetCurrentTrick())
+        if (trickHandler == null)
         {
-            case (TrickHandler.TrickMove.UP):
-                image.transform.rotation = Quaternion.Euler(0, 0, 90);
-                break;
-            case (TrickHandler.TrickMove.DOWN):
-                image.transform.rotation = Quaternion.Euler(0, 0, 270);
-                break;
-            case (TrickHandler.TrickMove.LEFT):
-                image.transform.rotation = Quaternion.Euler(0, 0, 180);
-                break;
-            case (TrickHandler.TrickMove.RIGHT):
-                image.transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case (TrickHandler.TrickMove.NONE):
-                image.enabled = false;
-                break;
+            trickHandler = GameObject.FindObjectOfType<TrickHandler>();
+        }
+        else
+        {
+            image.enabled = true;
+            switch (trickHandler.GetCurrentTrick())
+            {
+                case (TrickHandler.TrickMove.UP):
+                    image.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    break;
+                case (TrickHandler.TrickMove.DOWN):
+                    image.transform.rotation = Quaternion.Euler(0, 0, 270);
+                    break;
+                case (TrickHandler.TrickMove.LEFT):
+                    image.transform.rotation = Quaternion.Euler(0, 0, 180);
+                    break;
+                case (TrickHandler.TrickMove.RIGHT):
+                    image.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    break;
+                case (TrickHandler.TrickMove.NONE):
+                    image.enabled = false;
+                    break;
+            }
         }
 
     }
