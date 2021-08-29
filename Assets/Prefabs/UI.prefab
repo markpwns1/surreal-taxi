@@ -208,7 +208,7 @@ MonoBehaviour:
   generator: {fileID: 8321124272011469244}
   profile: {fileID: 8209692878623859897}
   defaultPrintDelay: 1
-  maxDisplay: 2
+  maxDisplay: 1
 --- !u!114 &8321124272011469244
 MonoBehaviour:
   m_ObjectHideFlags: 0

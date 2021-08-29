@@ -38,9 +38,8 @@ public class ProceduralGenerator : MonoBehaviour
         var j = 0;
         do
         {
-            if (Physics.Raycast(origin, Vector3.down, out RaycastHit h) && (h.collider.gameObject.tag == "Floor"))
+            if (Physics.Raycast(origin, Vector3.down, out hit) && (hit.collider.gameObject.tag == "Floor" || !onFloor))
             {
-                hit = h;
                 return true;
             }
 
@@ -89,6 +88,14 @@ public class ProceduralGenerator : MonoBehaviour
 
     void Start()
     {
+
+
+        StartCoroutine(_Start());
+        
+    }
+
+    IEnumerator _Start()
+    {
         {
             var filter = floor.GetComponent<MeshFilter>();
             var mesh = filter.mesh;
@@ -125,12 +132,10 @@ public class ProceduralGenerator : MonoBehaviour
         }
 
         {
+            yield return null;
             var placement = ForcePlaceObject(player, true, true);
             placement.instance.transform.position = placement.hit.point + Vector3.up * 3f;
         }
-
-        
-        
     }
 
 }
