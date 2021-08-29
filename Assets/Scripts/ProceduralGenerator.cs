@@ -22,6 +22,7 @@ public class ProceduralGenerator : MonoBehaviour
     public float mapSize;
 
     public GameObject player;
+    public GameObject floor;
 
     public struct ObjectPlacement
     {
@@ -94,6 +95,27 @@ public class ProceduralGenerator : MonoBehaviour
         {
             var placement = ForcePlaceObject(player, true, true);
             placement.instance.transform.position = placement.hit.point + Vector3.up * 3f;
+        }
+
+        {
+            //var mesh = floor.GetComponent<MeshFilter>().mesh;
+            //var verts = mesh.vertices;
+            //for (int i = 0; i < verts.Length; i++)
+            //{
+            //    var vertex = verts[i];
+            //    vertex.y += Mathf.PerlinNoise(vertex.x, vertex.z) * 10.0f;
+            //}
+            //mesh.SetVertices(verts);
+            //for (int x = 0; x < mapSize; x++)
+            //{
+            //    float x_t = x / (float) mapSize;
+            //    for (int y = 0; y < mapSize; y++)
+            //    {
+            //        float y_t = y / (float) mapSize;
+            //        float h = Mathf.PerlinNoise(x, y);
+            //        mesh.ver
+            //    }
+            //}
         }
         
     }

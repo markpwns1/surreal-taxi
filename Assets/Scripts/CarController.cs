@@ -199,19 +199,19 @@ public class CarController : MonoBehaviour
         ground = false;
 
         RaycastHit rayHit;
-        Physics.Raycast(rb.position + body.forward * 3.5f, 
+        var hit = Physics.Raycast(rb.position + body.forward * 3.5f, 
             -body.up, out rayHit);
-        ground = rayHit.distance < groundThreshold;
+        ground = hit && rayHit.distance < groundThreshold;
         if (ground) surfaceNormal = rayHit.normal;
         else
         {
-            Physics.Raycast(rb.position, -body.up, out rayHit);
-            ground = rayHit.distance < groundThreshold;
+            hit = Physics.Raycast(rb.position, -body.up, out rayHit);
+            ground = hit && rayHit.distance < groundThreshold;
             if (ground) surfaceNormal = rayHit.normal;
             else
             {
-                Physics.Raycast(rb.position, Vector3.down, out rayHit);
-                ground = rayHit.distance < groundThreshold;
+                hit = Physics.Raycast(rb.position, Vector3.down, out rayHit);
+                ground = hit && rayHit.distance < groundThreshold;
                 if (ground) surfaceNormal = rayHit.normal;
             }
         }

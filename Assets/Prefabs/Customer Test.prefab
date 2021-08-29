@@ -238,11 +238,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3488063919645288440, guid: a7f5f60e95022e6449dfcb2286fc1b93,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f3a09d8a4800be4da47379b3302727b, type: 2}
+    - target: {fileID: -514521820524033739, guid: a7f5f60e95022e6449dfcb2286fc1b93,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f3a09d8a4800be4da47379b3302727b, type: 2}
     - target: {fileID: 919132149155446097, guid: a7f5f60e95022e6449dfcb2286fc1b93,
         type: 3}
       propertyPath: m_Name
       value: Business Man
       objectReference: {fileID: 0}
+    - target: {fileID: 5102395909350310581, guid: a7f5f60e95022e6449dfcb2286fc1b93,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f3a09d8a4800be4da47379b3302727b, type: 2}
+    - target: {fileID: 5102395909350310581, guid: a7f5f60e95022e6449dfcb2286fc1b93,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71a8eaf365af1fe49906e214771c4da7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7f5f60e95022e6449dfcb2286fc1b93, type: 3}
 --- !u!1 &4794375734996880603 stripped
