@@ -17,7 +17,7 @@ public class ScoreScript : MonoBehaviour
     void Update() {
 
 
-       scoreText.GetComponent<Text>().text = "Salary: " + Mathf.Round(theScore) + "$";
+       scoreText.GetComponent<Text>().text = "SALARY: " + Mathf.Round(theScore) + "$";
         if (countdown)
         {
             theScore -= Time.deltaTime;
