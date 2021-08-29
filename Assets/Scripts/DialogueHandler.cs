@@ -21,6 +21,8 @@ public class DialogueHandler : MonoBehaviour
     private float nextPrintTime;
     private float printDelay;
 
+    public static bool talking = false;
+
     private void Start()
     {
         Reset();
@@ -28,6 +30,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void Reset()
     {
+        talking = false;
         profile.enabled = false;
         dialogue = gameObject.GetComponent<Text>();
         buffer = new List<string>();
@@ -43,6 +46,7 @@ public class DialogueHandler : MonoBehaviour
     {
         Reset();
 
+        talking = true;
         profile.enabled = true;
         string generated = generator.GenerateLines();
         string[] sentences = generated.Split('.');
@@ -103,5 +107,10 @@ public class DialogueHandler : MonoBehaviour
             dialogue.text += displayed + "\n";
         }
         dialogue.text += currentlyPrinted;
+    }
+
+    public static bool isTalking()
+    {
+        return talking;
     }
 }
