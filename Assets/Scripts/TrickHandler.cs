@@ -18,7 +18,7 @@ public class TrickHandler : MonoBehaviour
     public AudioSource successSound;
 
     private TrickMove currentTrick;
-    private float time;
+    public float time;
     private bool onAir = false, failed = false;
 
     private bool up, down, left, right;
@@ -28,6 +28,7 @@ public class TrickHandler : MonoBehaviour
     void Start()
     {
         ui = FindObjectOfType<TrickUI>();
+        ui.Init(this);
     }
 
     public void StartTricks()
@@ -64,6 +65,7 @@ public class TrickHandler : MonoBehaviour
         else
         {
             ui = FindObjectOfType<TrickUI>();
+            ui.Init(this);
             if (ui)
                 ui.OnTrickChange();
         }

@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 946419694}
   - component: {fileID: 946419693}
   - component: {fileID: 946419695}
+  - component: {fileID: 946419696}
   m_Layer: 0
   m_Name: Static
   m_TagString: Untagged
@@ -396,6 +397,27 @@ MonoBehaviour:
     type: 3}
   destinationPrefab: {fileID: 3994826415913509756, guid: ed55a1f51108a1445840ee4a21e74f08,
     type: 3}
+--- !u!114 &946419696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946419692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9684c28ef0133d478629f57015f7d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trickUIPanel: {fileID: 1136702218}
+  arrowColours:
+  - {r: 1, g: 0.5254902, b: 0.87843144, a: 1}
+  - {r: 0.9667528, g: 1, b: 0.5254902, a: 1}
+  - {r: 0.5254902, g: 0.9808319, b: 1, a: 1}
+  - {r: 0.5254902, g: 1, b: 0.5929511, a: 1}
+  arrow: {fileID: 1210882445}
+  arrowImage: {fileID: 1210882446}
+  loadingBar: {fileID: 709372608}
 --- !u!1 &1009322322
 GameObject:
   m_ObjectHideFlags: 0
