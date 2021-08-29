@@ -38,7 +38,7 @@ public class ProceduralGenerator : MonoBehaviour
         var j = 0;
         do
         {
-            if (Physics.Raycast(origin, Vector3.down, out RaycastHit h) && (!onFloor || h.collider.gameObject.tag == "Floor"))
+            if (Physics.Raycast(origin, Vector3.down, out RaycastHit h) && (h.collider.gameObject.tag == "Floor"))
             {
                 hit = h;
                 return true;
