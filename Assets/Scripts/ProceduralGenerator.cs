@@ -31,32 +31,46 @@ public class ProceduralGenerator : MonoBehaviour
         public RaycastHit hit;
     }
 
-    public ObjectPlacement PlaceObject(GameObject prefab, bool onFloor, bool repeat)
+    public bool MapRaycast(out RaycastHit hit, bool onFloor, bool repeat)
     {
         Vector3 origin = new Vector3(Random.Range(-mapSize / 2f, mapSize / 2f), 500, Random.Range(-mapSize / 2f, mapSize / 2f));
 
         var j = 0;
         do
         {
-            if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit) && (!onFloor || hit.collider.gameObject.tag == "Floor"))
+            if (Physics.Raycast(origin, Vector3.down, out RaycastHit h) && (!onFloor || h.collider.gameObject.tag == "Floor"))
             {
-                var instance = Instantiate(prefab);
-
-                return new ObjectPlacement()
-                {
-                    success = true,
-                    hit = hit,
-                    instance = instance
-                };
+                hit = h;
+                return true;
             }
 
             j++;
         } while (repeat && j < 100);
 
-        return new ObjectPlacement()
+        hit = new RaycastHit();
+        return false;
+    }
+
+    public ObjectPlacement PlaceObject(GameObject prefab, bool onFloor, bool repeat)
+    {
+        if(MapRaycast(out RaycastHit hit, onFloor, repeat))
         {
-            success = false
-        };
+            var instance = Instantiate(prefab);
+
+            return new ObjectPlacement()
+            {
+                success = true,
+                hit = hit,
+                instance = instance
+            };
+        }
+        else
+        {
+            return new ObjectPlacement()
+            {
+                success = false
+            };
+        }
     }
 
     // Tries forever to place object
@@ -75,6 +89,24 @@ public class ProceduralGenerator : MonoBehaviour
 
     void Start()
     {
+        {
+            var filter = floor.GetComponent<MeshFilter>();
+            var mesh = filter.mesh;
+            var verts = mesh.vertices;
+            for (int i = 0; i < verts.Length; i++)
+            {
+                var vertex = verts[i];
+                var p = new Vector2(vertex.x, vertex.y);
+                p *= 2.0f;
+                vertex.z = Mathf.PerlinNoise(p.x, p.y) * 0.1f;
+                verts[i] = vertex;
+            }
+            mesh.SetVertices(verts);
+            mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
+            floor.GetComponent<MeshCollider>().sharedMesh = mesh;
+        }
+
         foreach (var obj in mapObjects)
         {
             for (int i = 0; i < obj.amount; i++)
@@ -97,26 +129,7 @@ public class ProceduralGenerator : MonoBehaviour
             placement.instance.transform.position = placement.hit.point + Vector3.up * 3f;
         }
 
-        {
-            //var mesh = floor.GetComponent<MeshFilter>().mesh;
-            //var verts = mesh.vertices;
-            //for (int i = 0; i < verts.Length; i++)
-            //{
-            //    var vertex = verts[i];
-            //    vertex.y += Mathf.PerlinNoise(vertex.x, vertex.z) * 10.0f;
-            //}
-            //mesh.SetVertices(verts);
-            //for (int x = 0; x < mapSize; x++)
-            //{
-            //    float x_t = x / (float) mapSize;
-            //    for (int y = 0; y < mapSize; y++)
-            //    {
-            //        float y_t = y / (float) mapSize;
-            //        float h = Mathf.PerlinNoise(x, y);
-            //        mesh.ver
-            //    }
-            //}
-        }
+        
         
     }
 
