@@ -57,8 +57,9 @@ public class DialogueHandler : MonoBehaviour
         //{
         //    FeedLine(sentence.Trim());
         //}
-        FeedLine(generated.Split('.')[0]);
-        FeedLine(generated.Split('.')[1]);
+        var sentences = generated.Split('.', '!', '?');
+        FeedLine(sentences[0] + ".");
+        FeedLine(sentences[1] + ".");
         FeedLine("(LEFT CLICK TO END DIALOGUE)");
         print(generated);
     }
