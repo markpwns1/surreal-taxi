@@ -10283,7 +10283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147555e92a533df49b30bb3b39e7ba48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trickDuration: 100
+  nextTrickDelay: 0.25
+  failureDelay: 0.5
+  inputWindow: 1.5
 --- !u!1 &5489220339374439814
 GameObject:
   m_ObjectHideFlags: 0

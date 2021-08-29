@@ -14,18 +14,18 @@ public class TrickHandler : MonoBehaviour
         RIGHT
     }
 
-    public float trickDuration;
+    public float nextTrickDelay, failureDelay, inputWindow;
 
     private TrickMove currentTrick;
-    private float nextTrickEnd;
-    private bool onAir = false;
+    private float time;
+    private bool onAir = false, failed = false;
 
     private bool up, down, left, right;
 
     public void StartTricks()
     {
         currentTrick = TrickMove.NONE;
-        nextTrickEnd = Time.time;
+        time = 0;
         onAir = true;
     }
 
@@ -54,15 +54,27 @@ public class TrickHandler : MonoBehaviour
         {
             if (currentTrick == TrickMove.NONE)
             {
-                if (Time.time >= nextTrickEnd)
+                if (failed)
                 {
-                    currentTrick = (TrickMove) Random.Range(1, 5);
-                    nextTrickEnd = Time.time + trickDuration;
+                    if (Time.time > time + failureDelay)
+                    {
+                        currentTrick = (TrickMove)Random.Range(1, 5);
+                        time = Time.time;
+                        failed = false;
+                    }
+                }
+                else
+                {
+                    if (Time.time > time + nextTrickDelay)
+                    {
+                        currentTrick = (TrickMove)Random.Range(1, 5);
+                        time = Time.time;
+                    }
                 }
             }
             else
             {
-                if (Time.time < nextTrickEnd)
+                if (Time.time < time + inputWindow)
                 {
                     if (currentTrick == TrickMove.UP
                         && up
@@ -72,7 +84,7 @@ public class TrickHandler : MonoBehaviour
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
-                        nextTrickEnd = Time.time + trickDuration;
+                        time = Time.time;
                     }
                     else if (currentTrick == TrickMove.DOWN
                         && !up
@@ -82,7 +94,7 @@ public class TrickHandler : MonoBehaviour
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
-                        nextTrickEnd = Time.time + trickDuration;
+                        time = Time.time;
                     }
                     else if (currentTrick == TrickMove.LEFT
                         && !up
@@ -92,7 +104,7 @@ public class TrickHandler : MonoBehaviour
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
-                        nextTrickEnd = Time.time + trickDuration;
+                        time = Time.time;
                     }
                     else if (currentTrick == TrickMove.RIGHT
                         && !up
@@ -102,7 +114,7 @@ public class TrickHandler : MonoBehaviour
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
-                        nextTrickEnd = Time.time + trickDuration;
+                        time = Time.time;
                     }
                     else if (up
                         || down
@@ -110,8 +122,13 @@ public class TrickHandler : MonoBehaviour
                         || right)
                     {
                         currentTrick = TrickMove.NONE;
-                        nextTrickEnd = Time.time + trickDuration;
+                        time = Time.time;
+                        failed = true;
                     }
+                }
+                else
+                {
+                    currentTrick = TrickMove.NONE;
                 }
             }
         }
