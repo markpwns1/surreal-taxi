@@ -112,6 +112,7 @@ public class TrickHandler : MonoBehaviour
                         currentTrick = TrickMove.NONE;
                         time = Time.time;
                         successSound.Play();
+                        NotifyUIOfTrickChange();
                     }
                     else if (currentTrick == TrickMove.DOWN
                         && !up
@@ -123,6 +124,7 @@ public class TrickHandler : MonoBehaviour
                         currentTrick = TrickMove.NONE;
                         time = Time.time;
                         successSound.Play();
+                        NotifyUIOfTrickChange();
                     }
                     else if (currentTrick == TrickMove.LEFT
                         && !up
@@ -134,6 +136,7 @@ public class TrickHandler : MonoBehaviour
                         currentTrick = TrickMove.NONE;
                         time = Time.time;
                         successSound.Play();
+                        NotifyUIOfTrickChange();
                     }
                     else if (currentTrick == TrickMove.RIGHT
                         && !up
@@ -145,6 +148,7 @@ public class TrickHandler : MonoBehaviour
                         currentTrick = TrickMove.NONE;
                         time = Time.time;
                         successSound.Play();
+                        NotifyUIOfTrickChange();
                     }
                     else if (up
                         || down
@@ -154,11 +158,8 @@ public class TrickHandler : MonoBehaviour
                         currentTrick = TrickMove.NONE;
                         time = Time.time;
                         failed = true;
+                        NotifyUIOfTrickChange();
                     }
-                }
-                else
-                {
-                    currentTrick = TrickMove.NONE;
                 }
             }
         }
