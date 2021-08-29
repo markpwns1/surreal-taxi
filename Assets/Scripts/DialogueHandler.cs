@@ -49,7 +49,7 @@ public class DialogueHandler : MonoBehaviour
         talking = true;
         profile.enabled = true;
         string generated = generator.GenerateLines();
-        string[] sentences = generated.Split('.');
+        string[] sentences = generated.Split('\n');
         foreach (string sentence in sentences)
         {
             FeedLine(sentence.Trim());
