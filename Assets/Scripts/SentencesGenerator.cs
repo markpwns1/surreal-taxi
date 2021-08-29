@@ -18,6 +18,6 @@ public class SentencesGenerator : MonoBehaviour
             model.Learn(source.source);
         }
 
-        return model.Walk().First();
+        return model.Walk().First().ToUpper();
     }
 }
