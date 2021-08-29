@@ -14,12 +14,12 @@ public class TrickAnimationPlayer : MonoBehaviour
         x.parameterCount > 0).ToArray();
     }
 
-    // testing
-    private void Update()
-    {
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-            PlayTrick(TrickHandler.TrickMove.UP);
-    }
+    //// testing
+    //private void Update()
+    //{
+    //    if (Keyboard.current.lKey.wasPressedThisFrame)
+    //        PlayTrick(TrickHandler.TrickMove.UP);
+    //}
 
     public static void PlayTrick(TrickHandler.TrickMove move)
     {
