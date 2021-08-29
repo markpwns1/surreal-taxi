@@ -7,128 +7,111 @@ public class TrickHandler : MonoBehaviour
 {
     public enum TrickMove
     {
+        NONE,
         UP,
         DOWN,
         LEFT,
         RIGHT
     }
 
-    public enum TrickState
-    {
-        NONE,
-        IN_PROCESS,
-        FAILED,
-        SUCCESS
-    }
-
     public float trickDuration;
-    public int numberOfTricks;
 
-    private List<TrickMove> tricks;
+    private TrickMove currentTrick;
     private float nextTrickEnd;
-    private TrickState state = TrickState.NONE;
+    private bool onAir = false;
 
-    void Update()
+    public void StartTricks()
     {
-        if (state == TrickState.IN_PROCESS)
+        currentTrick = TrickMove.NONE;
+        nextTrickEnd = Time.time;
+        onAir = true;
+    }
+
+    public void EndTricks()
+    {
+        currentTrick = TrickMove.NONE;
+        onAir = false;
+    }
+
+    public void ToggleTricks()
+    {
+        if (onAir)
         {
-            if (Time.time < nextTrickEnd && tricks.Count > 0)
+            EndTricks();
+        }
+        else
+        {
+            StartTricks();
+        }
+    }
+
+    public void Update()
+    {
+        if (onAir)
+        {
+            if (currentTrick == TrickMove.NONE)
             {
-                if (tricks[0] == TrickMove.UP 
-                    && Keyboard.current.wKey.wasPressedThisFrame
-                    && !Keyboard.current.sKey.wasPressedThisFrame
-                    && !Keyboard.current.aKey.wasPressedThisFrame
-                    && !Keyboard.current.dKey.wasPressedThisFrame)
+                if (Time.time >= nextTrickEnd)
                 {
-                    tricks.RemoveAt(0);
+                    currentTrick = (TrickMove) Random.Range(0, 4);
                     nextTrickEnd = Time.time + trickDuration;
-                    state = TrickState.SUCCESS;
-                }
-                else if (tricks[0] == TrickMove.DOWN
-                    && !Keyboard.current.wKey.wasPressedThisFrame
-                    && Keyboard.current.sKey.wasPressedThisFrame
-                    && !Keyboard.current.aKey.wasPressedThisFrame
-                    && !Keyboard.current.dKey.wasPressedThisFrame)
-                {
-                    tricks.RemoveAt(0);
-                    nextTrickEnd = Time.time + trickDuration;
-                    state = TrickState.SUCCESS;
-                }
-                else if (tricks[0] == TrickMove.LEFT
-                    && !Keyboard.current.wKey.wasPressedThisFrame
-                    && !Keyboard.current.sKey.wasPressedThisFrame
-                    && Keyboard.current.aKey.wasPressedThisFrame
-                    && !Keyboard.current.dKey.wasPressedThisFrame)
-                {
-                    tricks.RemoveAt(0);
-                    nextTrickEnd = Time.time + trickDuration;
-                    state = TrickState.SUCCESS;
-                }
-                else if (tricks[0] == TrickMove.RIGHT
-                    && !Keyboard.current.wKey.wasPressedThisFrame
-                    && !Keyboard.current.sKey.wasPressedThisFrame
-                    && !Keyboard.current.aKey.wasPressedThisFrame
-                    && Keyboard.current.dKey.wasPressedThisFrame)
-                {
-                    tricks.RemoveAt(0);
-                    nextTrickEnd = Time.time + trickDuration;
-                    state = TrickState.SUCCESS;
-                }
-                else if (Keyboard.current.wKey.wasPressedThisFrame
-                    || Keyboard.current.sKey.wasPressedThisFrame
-                    || Keyboard.current.aKey.wasPressedThisFrame
-                    || Keyboard.current.dKey.wasPressedThisFrame)
-                {
-                    tricks.RemoveAt(0);
-                    nextTrickEnd = Time.time + 3 * trickDuration;
-                    state = TrickState.FAILED;
                 }
             }
-            else if (tricks.Count > 0)
+            else
             {
-                tricks.RemoveAt(0);
-                nextTrickEnd = Time.time + 3 * trickDuration;
-                state = TrickState.FAILED;
+                if (Time.time < nextTrickEnd)
+                {
+                    if (currentTrick == TrickMove.UP
+                        && Keyboard.current.wKey.wasPressedThisFrame
+                        && !Keyboard.current.sKey.wasPressedThisFrame
+                        && !Keyboard.current.aKey.wasPressedThisFrame
+                        && !Keyboard.current.dKey.wasPressedThisFrame)
+                    {
+                        currentTrick = TrickMove.NONE;
+                        nextTrickEnd = Time.time + trickDuration;
+                    }
+                    else if (currentTrick == TrickMove.DOWN
+                        && !Keyboard.current.wKey.wasPressedThisFrame
+                        && Keyboard.current.sKey.wasPressedThisFrame
+                        && !Keyboard.current.aKey.wasPressedThisFrame
+                        && !Keyboard.current.dKey.wasPressedThisFrame)
+                    {
+                        currentTrick = TrickMove.NONE;
+                        nextTrickEnd = Time.time + trickDuration;
+                    }
+                    else if (currentTrick == TrickMove.LEFT
+                        && !Keyboard.current.wKey.wasPressedThisFrame
+                        && !Keyboard.current.sKey.wasPressedThisFrame
+                        && Keyboard.current.aKey.wasPressedThisFrame
+                        && !Keyboard.current.dKey.wasPressedThisFrame)
+                    {
+                        currentTrick = TrickMove.NONE;
+                        nextTrickEnd = Time.time + trickDuration;
+                    }
+                    else if (currentTrick == TrickMove.RIGHT
+                        && !Keyboard.current.wKey.wasPressedThisFrame
+                        && !Keyboard.current.sKey.wasPressedThisFrame
+                        && !Keyboard.current.aKey.wasPressedThisFrame
+                        && Keyboard.current.dKey.wasPressedThisFrame)
+                    {
+                        currentTrick = TrickMove.NONE;
+                        nextTrickEnd = Time.time + trickDuration;
+                    }
+                    else if (Keyboard.current.wKey.wasPressedThisFrame
+                        || Keyboard.current.sKey.wasPressedThisFrame
+                        || Keyboard.current.aKey.wasPressedThisFrame
+                        || Keyboard.current.dKey.wasPressedThisFrame)
+                    {
+                        currentTrick = TrickMove.NONE;
+                        nextTrickEnd = Time.time + trickDuration;
+                    }
+                }
             }
-            if (tricks.Count == 0)
-            {
-                state = TrickState.NONE;
-            }
-        }
-        else if ((state == TrickState.FAILED || state == TrickState.SUCCESS) && Time.time > nextTrickEnd)
-        {
-            nextTrickEnd = Time.time + trickDuration;
-            state = TrickState.IN_PROCESS;
         }
     }
 
-    public void GenerateTrickMoves()
+    public TrickMove GetCurrentTrick()
     {
-        state = TrickState.IN_PROCESS;
-        nextTrickEnd = Time.time + trickDuration;
-        tricks = new List<TrickMove>();
-        for (int i = 0; i < numberOfTricks; i++)
-        {
-            tricks.Add((TrickMove) Random.Range(0, 4));
-        }
-    }
-
-    public TrickState GetTrickState()
-    {
-        return state;
-    }
-
-    public TrickMove GetCurrentMove()
-    {
-        if (state == TrickState.IN_PROCESS)
-        {
-            return tricks[0];
-        }
-        return 0;
-    }
-
-    public float TimeLeft()
-    {
-        return nextTrickEnd - Time.time;
+        return currentTrick;
     }
 }

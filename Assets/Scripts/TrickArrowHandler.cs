@@ -9,41 +9,31 @@ public class TrickArrowHandler : MonoBehaviour
     private Image image;
     void Start()
     {
-        Reset();
-    }
-
-    public void Reset()
-    {
         trickHandler = GetComponent<TrickHandler>();
         image = GetComponent<Image>();
-        trickHandler.GenerateTrickMoves();
     }
+
     void Update()
     {
-        if (trickHandler.GetTrickState() == TrickHandler.TrickState.IN_PROCESS)
+        image.enabled = true;
+        switch (trickHandler.GetCurrentTrick())
         {
-            image.enabled = true;
-            switch (trickHandler.GetCurrentMove())
-            {
-                case (TrickHandler.TrickMove.UP):
-                    image.transform.rotation = Quaternion.Euler(0, 0, 90);
-                    break;
-                case (TrickHandler.TrickMove.DOWN):
-                    image.transform.rotation = Quaternion.Euler(0, 0, 270);
-                    break;
-                case (TrickHandler.TrickMove.LEFT):
-                    image.transform.rotation = Quaternion.Euler(0, 0, 180);
-                    break;
-                case (TrickHandler.TrickMove.RIGHT):
-                    image.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    break;
-            }
-        }
-        else if (trickHandler.GetTrickState() == TrickHandler.TrickState.FAILED || trickHandler.GetTrickState() == TrickHandler.TrickState.SUCCESS || trickHandler.GetTrickState() == TrickHandler.TrickState.NONE)
-        {
-            image.enabled = false;
+            case (TrickHandler.TrickMove.UP):
+                image.transform.rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            case (TrickHandler.TrickMove.DOWN):
+                image.transform.rotation = Quaternion.Euler(0, 0, 270);
+                break;
+            case (TrickHandler.TrickMove.LEFT):
+                image.transform.rotation = Quaternion.Euler(0, 0, 180);
+                break;
+            case (TrickHandler.TrickMove.RIGHT):
+                image.transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case (TrickHandler.TrickMove.NONE):
+                image.enabled = false;
+                break;
         }
 
-        print(trickHandler.TimeLeft());
     }
 }

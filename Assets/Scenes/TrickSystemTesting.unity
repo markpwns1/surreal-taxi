@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1212623569}
-        m_TargetAssemblyTypeName: TrickArrowHandler, Assembly-CSharp
-        m_MethodName: Reset
+      - m_Target: {fileID: 1212623570}
+        m_TargetAssemblyTypeName: TrickHandler, Assembly-CSharp
+        m_MethodName: ToggleTricks
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -637,7 +637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trickDuration: 2
-  numberOfTricks: 5
 --- !u!1 &1546763258
 GameObject:
   m_ObjectHideFlags: 0
