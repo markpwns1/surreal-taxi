@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectPerson : MonoBehaviour
+public class CollectPersonScore : MonoBehaviour
 {
+
+
     void OnTriggerEnter(Collider other) {
 
 
@@ -11,7 +13,7 @@ public class CollectPerson : MonoBehaviour
 
             ScoreScript.theScore += 1000;
             Destroy(gameObject);
-
+        
         }
 
 

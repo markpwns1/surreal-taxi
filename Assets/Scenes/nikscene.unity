@@ -193,7 +193,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Salary: 0$'
+  m_Text: 'Salary: 0$
+
+'
 --- !u!222 &109731243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -221,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 109731240}
+  persecond: 0
 --- !u!114 &329808646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 109731240}
+  persecond: 0
 --- !u!4 &617113515
 Transform:
   m_ObjectHideFlags: 0
@@ -865,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 109731240}
+  persecond: 0
 --- !u!1001 &2107177775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -880,17 +885,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 45291dbe0500d0e4bbbb65cd340f1a40,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.24
+      value: -1.14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45291dbe0500d0e4bbbb65cd340f1a40,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.15768
+      value: -1.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45291dbe0500d0e4bbbb65cd340f1a40,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.8
+      value: -1.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45291dbe0500d0e4bbbb65cd340f1a40,
         type: 3}
