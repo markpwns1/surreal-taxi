@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DialogueHandler : MonoBehaviour
 {
     public SentencesGenerator generator;
+    public Image profile;
 
     public float defaultPrintDelay = 3f;
     public int maxDisplay = 5;
@@ -25,8 +26,9 @@ public class DialogueHandler : MonoBehaviour
         Reset();
     }
 
-    private void Reset()
+    public void Reset()
     {
+        profile.enabled = false;
         dialogue = gameObject.GetComponent<Text>();
         buffer = new List<string>();
         display = new List<string>();
@@ -41,6 +43,7 @@ public class DialogueHandler : MonoBehaviour
     {
         Reset();
 
+        profile.enabled = true;
         string generated = generator.GenerateLines();
         string[] sentences = generated.Split('.');
         foreach (string sentence in sentences)

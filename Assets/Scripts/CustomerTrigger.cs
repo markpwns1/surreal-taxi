@@ -6,9 +6,11 @@ public class CustomerTrigger : MonoBehaviour
 {
     public bool pickup = true;
     CustomerManager cm;
+    DialogueHandler dh;
     void Start()
     {
         cm = GameObject.FindObjectOfType<CustomerManager>();
+        dh = GameObject.FindObjectOfType<DialogueHandler>();
     }
 
     void OnTriggerEnter(Collider col)
@@ -22,10 +24,12 @@ public class CustomerTrigger : MonoBehaviour
             ScoreScript.countdown = true;
             ScoreScript.theScore += 1000;
             Destroy(transform.parent.gameObject);
+            dh.StartDialogue();
         }
         else {
             ScoreScript.countdown = false;
             Destroy(gameObject);
+            dh.Reset();
         }
     }
 }
