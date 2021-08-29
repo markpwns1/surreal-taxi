@@ -20,6 +20,8 @@ public class TrickHandler : MonoBehaviour
     private float nextTrickEnd;
     private bool onAir = false;
 
+    private bool up, down, left, right;
+
     public void StartTricks()
     {
         currentTrick = TrickMove.NONE;
@@ -47,6 +49,7 @@ public class TrickHandler : MonoBehaviour
 
     public void Update()
     {
+        UpdateControls();
         if (onAir)
         {
             if (currentTrick == TrickMove.NONE)
@@ -62,55 +65,81 @@ public class TrickHandler : MonoBehaviour
                 if (Time.time < nextTrickEnd)
                 {
                     if (currentTrick == TrickMove.UP
-                        && Keyboard.current.wKey.wasPressedThisFrame
-                        && !Keyboard.current.sKey.wasPressedThisFrame
-                        && !Keyboard.current.aKey.wasPressedThisFrame
-                        && !Keyboard.current.dKey.wasPressedThisFrame)
+                        && up
+                        && !down
+                        && !left
+                        && !right)
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
                     else if (currentTrick == TrickMove.DOWN
-                        && !Keyboard.current.wKey.wasPressedThisFrame
-                        && Keyboard.current.sKey.wasPressedThisFrame
-                        && !Keyboard.current.aKey.wasPressedThisFrame
-                        && !Keyboard.current.dKey.wasPressedThisFrame)
+                        && !up
+                        && down
+                        && !left
+                        && !right)
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
                     else if (currentTrick == TrickMove.LEFT
-                        && !Keyboard.current.wKey.wasPressedThisFrame
-                        && !Keyboard.current.sKey.wasPressedThisFrame
-                        && Keyboard.current.aKey.wasPressedThisFrame
-                        && !Keyboard.current.dKey.wasPressedThisFrame)
+                        && !up
+                        && !down
+                        && left
+                        && !right)
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
                     else if (currentTrick == TrickMove.RIGHT
-                        && !Keyboard.current.wKey.wasPressedThisFrame
-                        && !Keyboard.current.sKey.wasPressedThisFrame
-                        && !Keyboard.current.aKey.wasPressedThisFrame
-                        && Keyboard.current.dKey.wasPressedThisFrame)
+                        && !up
+                        && !down
+                        && !left
+                        && right)
                     {
                         TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
-                    else if (Keyboard.current.wKey.wasPressedThisFrame
-                        || Keyboard.current.sKey.wasPressedThisFrame
-                        || Keyboard.current.aKey.wasPressedThisFrame
-                        || Keyboard.current.dKey.wasPressedThisFrame)
+                    else if (up
+                        || down
+                        || left
+                        || right)
                     {
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
                 }
             }
+        }
+    }
+
+    private void UpdateControls()
+    {
+        up = down = left = right = false;
+
+        up = Keyboard.current.wKey.wasPressedThisFrame
+            || Keyboard.current.upArrowKey.wasPressedThisFrame;
+
+        down = Keyboard.current.sKey.wasPressedThisFrame
+            || Keyboard.current.downArrowKey.wasPressedThisFrame;
+
+        left = Keyboard.current.aKey.wasPressedThisFrame
+            || Keyboard.current.leftArrowKey.wasPressedThisFrame;
+
+        right = Keyboard.current.dKey.wasPressedThisFrame
+            || Keyboard.current.rightArrowKey.wasPressedThisFrame;
+
+        Gamepad g = Gamepad.current;
+        if(g != null)
+        {
+            up |= Gamepad.current.leftStick.up.wasPressedThisFrame;
+            down |= Gamepad.current.leftStick.down.wasPressedThisFrame;
+            left |= Gamepad.current.leftStick.left.wasPressedThisFrame;
+            right |= Gamepad.current.leftStick.right.wasPressedThisFrame;
         }
     }
 
