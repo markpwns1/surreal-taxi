@@ -22,6 +22,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void Start()
     {
+        Reset();
     }
 
     private void Reset()

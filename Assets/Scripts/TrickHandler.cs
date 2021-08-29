@@ -42,6 +42,7 @@ public class TrickHandler : MonoBehaviour
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
+                    state = TrickState.SUCCESS;
                 }
                 else if (tricks[0] == TrickMove.DOWN
                     && !Keyboard.current.wKey.wasPressedThisFrame
@@ -51,6 +52,7 @@ public class TrickHandler : MonoBehaviour
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
+                    state = TrickState.SUCCESS;
                 }
                 else if (tricks[0] == TrickMove.LEFT
                     && !Keyboard.current.wKey.wasPressedThisFrame
@@ -60,6 +62,7 @@ public class TrickHandler : MonoBehaviour
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
+                    state = TrickState.SUCCESS;
                 }
                 else if (tricks[0] == TrickMove.RIGHT
                     && !Keyboard.current.wKey.wasPressedThisFrame
@@ -69,23 +72,33 @@ public class TrickHandler : MonoBehaviour
                 {
                     tricks.RemoveAt(0);
                     nextTrickEnd = Time.time + trickDuration;
+                    state = TrickState.SUCCESS;
                 }
                 else if (Keyboard.current.wKey.wasPressedThisFrame
                     || Keyboard.current.sKey.wasPressedThisFrame
                     || Keyboard.current.aKey.wasPressedThisFrame
                     || Keyboard.current.dKey.wasPressedThisFrame)
                 {
+                    tricks.RemoveAt(0);
+                    nextTrickEnd = Time.time + 3 * trickDuration;
                     state = TrickState.FAILED;
                 }
             }
             else if (tricks.Count > 0)
             {
+                tricks.RemoveAt(0);
+                nextTrickEnd = Time.time + 3 * trickDuration;
                 state = TrickState.FAILED;
             }
             if (tricks.Count == 0)
             {
-                state = TrickState.SUCCESS;
+                state = TrickState.NONE;
             }
+        }
+        else if ((state == TrickState.FAILED || state == TrickState.SUCCESS) && Time.time > nextTrickEnd)
+        {
+            nextTrickEnd = Time.time + trickDuration;
+            state = TrickState.IN_PROCESS;
         }
     }
 
