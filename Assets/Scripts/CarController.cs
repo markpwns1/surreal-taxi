@@ -45,7 +45,8 @@ public class CarController : MonoBehaviour
     private float gas, turn, brake, rotation;
 
     private float groundThreshold, tireRot, fTireRot;
-    private bool ground, tricks = false;
+    private bool tricks = false;
+    public static bool ground;
 
 
     //private Vector3 debugVec1, debugVec2, debugVec3;
