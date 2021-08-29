@@ -92,11 +92,14 @@ public class DialogueHandler : MonoBehaviour
 
             if (currentlyPrinting == null)
             {
-                if (display.Count > maxDisplay)
+                if (currentlyPrinted.Length > 2)
                 {
-                    display.RemoveAt(0);
+                    if (display.Count > maxDisplay && dialogue.text.Length > 320)
+                    {
+                        display.RemoveAt(0);
+                    }
+                    display.Add(currentlyPrinted);
                 }
-                display.Add(currentlyPrinted);
                 currentlyPrinted = null;
             }
         }
@@ -109,7 +112,7 @@ public class DialogueHandler : MonoBehaviour
 
         foreach (string displayed in display)
         {
-            dialogue.text += displayed + "\n";
+            dialogue.text += displayed.Trim() + "\n";
         }
         dialogue.text += currentlyPrinted;
     }
