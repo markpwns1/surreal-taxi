@@ -10381,8 +10381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147555e92a533df49b30bb3b39e7ba48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextTrickDelay: 0
-  failureDelay: 0.1
+  nextTrickDelay: 0.1
+  failureDelay: 0.3
   inputWindow: 1.5
   successSound: {fileID: 5888720785849913306}
   time: 0
