@@ -39,11 +39,13 @@ public class CarController : MonoBehaviour
     private Vector3 surfaceNormal,
         previousVelocity, deltaV;
 
+    private TrickHandler trickHandler;
+
     // controls
     private float gas, turn, brake, rotation;
 
     private float groundThreshold, tireRot, fTireRot;
-    private bool ground;
+    private bool ground, tricks = false;
 
 
     //private Vector3 debugVec1, debugVec2, debugVec3;
@@ -85,6 +87,8 @@ public class CarController : MonoBehaviour
 
         Transform particleParent = body.GetChild(2);
         driftParticles = particleParent.GetChild(0).GetComponentsInChildren<ParticleSystem>();
+
+        trickHandler = GetComponent<TrickHandler>();
     }
 
     // Update is called once per frame
@@ -219,6 +223,16 @@ public class CarController : MonoBehaviour
 
         body.up = Vector3.Lerp(body.up, surfaceNormal, .2f);
         body.RotateAround(body.position, body.up, rotation);
+
+        if(!ground && !tricks)
+        {
+            tricks = true;
+            trickHandler.StartTricks();
+        }else if(ground && tricks)
+        {
+            tricks = false;
+            trickHandler.EndTricks();
+        }
     }
 
     private float LoopAngle(float angle)

@@ -53,7 +53,7 @@ public class TrickHandler : MonoBehaviour
             {
                 if (Time.time >= nextTrickEnd)
                 {
-                    currentTrick = (TrickMove) Random.Range(0, 4);
+                    currentTrick = (TrickMove) Random.Range(1, 5);
                     nextTrickEnd = Time.time + trickDuration;
                 }
             }
@@ -67,6 +67,7 @@ public class TrickHandler : MonoBehaviour
                         && !Keyboard.current.aKey.wasPressedThisFrame
                         && !Keyboard.current.dKey.wasPressedThisFrame)
                     {
+                        TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
@@ -76,6 +77,7 @@ public class TrickHandler : MonoBehaviour
                         && !Keyboard.current.aKey.wasPressedThisFrame
                         && !Keyboard.current.dKey.wasPressedThisFrame)
                     {
+                        TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
@@ -85,6 +87,7 @@ public class TrickHandler : MonoBehaviour
                         && Keyboard.current.aKey.wasPressedThisFrame
                         && !Keyboard.current.dKey.wasPressedThisFrame)
                     {
+                        TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
@@ -94,6 +97,7 @@ public class TrickHandler : MonoBehaviour
                         && !Keyboard.current.aKey.wasPressedThisFrame
                         && Keyboard.current.dKey.wasPressedThisFrame)
                     {
+                        TrickAnimationPlayer.PlayTrick(currentTrick);
                         currentTrick = TrickMove.NONE;
                         nextTrickEnd = Time.time + trickDuration;
                     }
