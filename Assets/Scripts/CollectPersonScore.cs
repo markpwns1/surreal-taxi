@@ -9,11 +9,12 @@ public class CollectPersonScore : MonoBehaviour
     void OnTriggerEnter(Collider other) {
 
 
-        if (other.gameObject.name == "car") {
+        if (other.gameObject.name == "Car(Clone)") {
 
             ScoreScript.theScore += 1000;
             Destroy(gameObject);
-        
+           
+
         }
 
 

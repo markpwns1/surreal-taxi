@@ -10,14 +10,19 @@ public class ScoreScript : MonoBehaviour
 
     public GameObject scoreText;
     public static float theScore;
+    public static bool countdown=false;
+
    
 
     void Update() {
 
 
-        scoreText.GetComponent<Text>().text = "Salary: " + theScore + "$";
-        theScore -= Time.deltaTime;
+       scoreText.GetComponent<Text>().text = "Salary: " + Mathf.Round(theScore) + "$";
+        if (countdown)
+        {
+            theScore -= Time.deltaTime;
 
+        }
     }
 
 

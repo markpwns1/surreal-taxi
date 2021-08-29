@@ -16,6 +16,25 @@ public class CustomerTrigger : MonoBehaviour
         if (pickup) cm.CustomerPickedUp();
         else cm.CustomerDroppedOff();
 
-        Destroy(gameObject);
+
+        if (pickup)
+        {
+
+            ScoreScript.countdown = true;
+            ScoreScript.theScore += 1000;
+            Destroy(transform.parent.gameObject);
+
+        }
+
+        else {
+
+            ScoreScript.countdown = false;
+            Destroy(gameObject);
+
+        }
+
+      
+
+
     }
 }
