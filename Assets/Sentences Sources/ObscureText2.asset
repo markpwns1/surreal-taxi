@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aa627c9ba0b214d8df26a2096e037c, type: 3}
+  m_Name: ObscureText2
+  m_EditorClassIdentifier: 
+  source: "Leaving there and proceeding for three days toward the east, you reach
+    Diomira, a city with sixty silver domes, bronze statues of all the gods, streets
+    paved with lead, a crystal theater, a golden cock that crows each morning on
+    a tower. All these beauties will already be familiar to the visitor, who has
+    seen them also in other cities. But the special quality of this city for the
+    man who arrives there on a September evening, when the days are growing shorter
+    and the multicolored lamps are lighted all at once at the doors of the food stalls
+    and from a terrace a woman's voice cries ooh!, is that he feels envy toward those
+    who now believe they have once before lived an evening identical to this and
+    who think they were happy, that time.\r\n\rThe ancients built Valdrada on the
+    shores of a lake, with houses all verandas one above the other, and high streets
+    whose railed parapets look out over the water. Thus the traveler, arriving, sees
+    two cities: one erect above the lake, and the other reflected, upside down. Nothing
+    exists or happens in the one Valdrada that the other Valdrada does not repeat,
+    because the city was so constructed that its every point would be reflected in
+    its mirror, and the Valdrada down in the water contains not only all the flutings
+    and juttings of the facades that rise above the lake, but also the rooms' interiors
+    with ceilings and floors, the perspective of the halls, the mirrors of the wardrobes.\r\n\rValdrada's
+    inhabitants know that each of their actions is, at once, that action and its
+    mirror-image, which possesses the special dignity of images, and this awareness
+    prevents them from succumbing for a single moment to chance and forgetfulness.
+    Even when lovers twist their naked bodies, skin against skin, seeking the position
+    that will give one the most pleasure in the other, even when murderers plunge
+    the knife into the black veins of the neck and more clotted blood pours out the
+    more they press the blade that slips between the tendons, it is not so much their
+    copulating or murdering that matters as the copulating or murdering of the images,
+    limpid and cold in the mirror.\r\n\rAt times the mirror increases a thing's value,
+    at times denies it. Not everything that seems valuable above the mirror maintains
+    its force when mirrored. The twin cities are not equal, because nothing that
+    exists or happens in Valdrada is symmetrical: every face and gesture is answered,
+    from the mirror, by a face and gesture inverted, point by point. The two Valdradas
+    live for each other, their eyes interlocked; but there is no love between them.\r\n\rIn
+    Ersilia, to establish the relationships that sustain the city's life, the inhabitants
+    stretch strings from the corners of the houses, white or black or gray or black-and-white
+    according to whether they mark a relationship of blood, of trade, authority,
+    agency. When the strings become so numerous that you can no longer pass among
+    them, the inhabitants leave: the houses are dismantled; only the strings and
+    their supports remain.\r\n\rFrom a mountainside, camping with their household
+    goods, Ersilia's refugees look at the labyrinth of taut strings and poles that
+    rise in the plain. That is the city of Ersilia still, and they are nothing.\r\n\rThey
+    rebuild Ersilia elsewhere. They weave a similar pattern of strings which they
+    would like to be more complex and at the same time more regular than the other.
+    Then they abandon it and take themselves and their houses still farther away.\r\n\rThus,
+    when traveling in the territory of Ersilia, you come upon the ruins of the abandoned
+    cities, without the walls which do not last, without the bones of the dead which
+    the wind rolls away: spiderwebs of intricate relationships seeking a form.\r\n"
