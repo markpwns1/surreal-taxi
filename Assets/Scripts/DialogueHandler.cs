@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
@@ -21,6 +22,10 @@ public class DialogueHandler : MonoBehaviour
 
     private void Start()
     {
+    }
+
+    private void Reset()
+    {
         dialogue = gameObject.GetComponent<Text>();
         buffer = new List<string>();
         display = new List<string>();
@@ -33,7 +38,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void StartDialogue()
     {
-        Start();
+        Reset();
 
         string generated = generator.GenerateLines();
         string[] sentences = generated.Split('.');
@@ -41,6 +46,7 @@ public class DialogueHandler : MonoBehaviour
         {
             FeedLine(sentence.Trim());
         }
+        FeedLine("(LEFT CLICK TO END DIALOGUE)");
         print(generated);
     }
 
@@ -80,6 +86,10 @@ public class DialogueHandler : MonoBehaviour
                 display.Add(currentlyPrinted);
                 currentlyPrinted = null;
             }
+        }
+        else if (currentlyPrinted == null && buffer.Count == 0 && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Reset();
         }
 
         dialogue.text = "";
