@@ -9,6 +9,11 @@ public class TrickSystemTesting : MonoBehaviour
     private Text text;
     void Start()
     {
+        Reset();
+    }
+
+    public void Reset()
+    {
         trickHandler = GetComponent<TrickHandler>();
         text = GetComponent<Text>();
         trickHandler.GenerateTrickMoves();
