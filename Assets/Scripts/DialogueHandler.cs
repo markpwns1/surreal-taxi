@@ -21,6 +21,11 @@ public class DialogueHandler : MonoBehaviour
 
     public void Start()
     {
+        StartDialogue();
+    }
+
+    public void StartDialogue()
+    {
         dialogue = gameObject.GetComponent<Text>();
         buffer = new List<string>();
         display = new List<string>();
@@ -30,11 +35,6 @@ public class DialogueHandler : MonoBehaviour
 
         nextPrintTime = Time.time;
 
-        StartDialogue();
-    }
-
-    public void StartDialogue()
-    {
         string generated = generator.GenerateLines();
         string[] sentences = generated.Split('.');
         foreach (string sentence in sentences)
