@@ -25,9 +25,9 @@ public class TrickUI : MonoBehaviour
         float angle;
         switch(trick)
         {
-            case TrickHandler.TrickMove.UP: angle = 270; break;
+            case TrickHandler.TrickMove.UP: angle = 90; break;
             case TrickHandler.TrickMove.RIGHT: angle = 0; break;
-            case TrickHandler.TrickMove.DOWN: angle = 90; break;
+            case TrickHandler.TrickMove.DOWN: angle = 270; break;
             case TrickHandler.TrickMove.LEFT: angle = 180; break;
             default:
                 {
