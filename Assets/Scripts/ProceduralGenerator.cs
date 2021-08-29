@@ -126,7 +126,7 @@ public class ProceduralGenerator : MonoBehaviour
 
         {
             var placement = ForcePlaceObject(player, true, true);
-            placement.instance.transform.position = placement.hit.point + Vector3.up * 200f;
+            placement.instance.transform.position = placement.hit.point + Vector3.up * 3f;
         }
 
         
