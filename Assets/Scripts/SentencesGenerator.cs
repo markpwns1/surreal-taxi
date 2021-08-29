@@ -11,7 +11,7 @@ public class SentencesGenerator : MonoBehaviour
 
     public string GenerateLines()
     {
-        var model = new StringMarkov(2);
+        var model = new StringMarkov(1);
 
         foreach (SentencesSource source in references)
         {
