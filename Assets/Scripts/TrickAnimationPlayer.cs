@@ -13,6 +13,8 @@ public class TrickAnimationPlayer : MonoBehaviour
 
     public static void PlayTrick(TrickHandler.TrickMove move)
     {
+        if (!anim)
+            return;
         switch (move)
         {
             case TrickHandler.TrickMove.UP:

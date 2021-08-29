@@ -6,7 +6,22 @@ ModelImporter:
   - first:
       74: 5011853835571415576
     second: skeleton|skeletonAction
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base
+    second: {fileID: 2100000, guid: c4d5a2afb6d81ce498c4a2788e4b4213, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ribbon
+    second: {fileID: 2100000, guid: dd01e1121b5a5ad4f8e1b07651843ae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: meat
+    second: {fileID: 2100000, guid: 6f3a09d8a4800be4da47379b3302727b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

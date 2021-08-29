@@ -15,9 +15,11 @@ public class Respawn : MonoBehaviour
     {
         if(transform.position.y < respawnY)
         {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             if(map.MapRaycast(out RaycastHit hit, true, true))
             {
                 transform.position = hit.point + Vector3.up * 10f;
+                //maybe fix camera or somthing idk
             }
         }
     }
