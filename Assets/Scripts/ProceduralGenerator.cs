@@ -33,7 +33,7 @@ public class ProceduralGenerator : MonoBehaviour
 
     public bool MapRaycast(out RaycastHit hit, bool onFloor, bool repeat)
     {
-        Vector3 origin = new Vector3(Random.Range(-mapSize / 2f, mapSize / 2f), 500, Random.Range(-mapSize / 2f, mapSize / 2f));
+        Vector3 origin = new Vector3(Random.Range(-mapSize / 2f, mapSize / 2f), 1000, Random.Range(-mapSize / 2f, mapSize / 2f));
 
         var j = 0;
         do
