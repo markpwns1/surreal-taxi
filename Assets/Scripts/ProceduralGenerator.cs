@@ -58,6 +58,20 @@ public class ProceduralGenerator : MonoBehaviour
         };
     }
 
+    // Tries forever to place object
+    public ObjectPlacement ForcePlaceObject(GameObject prefab, bool onFloor, bool repeat)
+    {
+        ObjectPlacement placement;
+
+        do
+        {
+            placement = PlaceObject(prefab, onFloor, repeat);
+        }
+        while (!placement.success);
+
+        return placement;
+    }
+
     void Start()
     {
         foreach (var obj in mapObjects)
@@ -78,14 +92,7 @@ public class ProceduralGenerator : MonoBehaviour
         }
 
         {
-            ObjectPlacement placement;
-
-            do
-            {
-                placement = PlaceObject(player, true, true);
-            } 
-            while (!placement.success);
-
+            var placement = ForcePlaceObject(player, true, true);
             placement.instance.transform.position = placement.hit.point + Vector3.up * 3f;
         }
         

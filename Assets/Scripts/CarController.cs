@@ -103,6 +103,7 @@ public class CarController : MonoBehaviour
         {
             ApplyFriction();
             rb.AddForce(body.forward * gas * accelaration);
+            rb.AddForce(-Physics.gravity * 0.9f);
         }
     }
 
