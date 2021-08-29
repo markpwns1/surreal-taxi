@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Respawn : MonoBehaviour
 {
@@ -13,14 +14,25 @@ public class Respawn : MonoBehaviour
     }
     void Update()
     {
-        if(transform.position.y < respawnY)
+        if(Keyboard.current.rKey.wasReleasedThisFrame || (Gamepad.current != null && Gamepad.current.selectButton.wasPressedThisFrame) || transform.position.y < respawnY)
         {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            if(map.MapRaycast(out RaycastHit hit, true, true))
+            //Debug.Log("B " + Time.time);
+            bool v = false;
+            RaycastHit hit;
+            do
             {
+                v = map.MapRaycast(out hit, true, true);
+            }
+            while (!v);
+
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //Debug.Log("A");
                 transform.position = hit.point + Vector3.up * 10f;
                 //maybe fix camera or somthing idk
             }
         }
     }
+
+
 }
