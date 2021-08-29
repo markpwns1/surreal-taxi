@@ -5221,13 +5221,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6401946733328488566}
   m_Layer: 0
-<<<<<<< HEAD
   m_Name: Car
   m_TagString: Player
-=======
-  m_Name: particles
-  m_TagString: Untagged
->>>>>>> cf16a9012b407110cf9090df7a606a1d7171a07c
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5243,12 +5238,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-<<<<<<< HEAD
-  - {fileID: 5451354108560329278}
-  - {fileID: 5489220339374439818}
-  - {fileID: 3409283853803775246}
-  m_Father: {fileID: 0}
-=======
   - {fileID: 8598143038024630779}
   m_Father: {fileID: 5451354108560329278}
   m_RootOrder: 2
@@ -5285,7 +5274,6 @@ Transform:
   - {fileID: 6401946733328488566}
   - {fileID: 5489220339924195779}
   m_Father: {fileID: 5489220339330841562}
->>>>>>> cf16a9012b407110cf9090df7a606a1d7171a07c
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4970931558080629181
@@ -15334,9 +15322,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -27775801278759386, guid: 45291dbe0500d0e4bbbb65cd340f1a40, type: 3}
-<<<<<<< HEAD
-  - {fileID: 2100000, guid: 014ba3327db55ba4e9cdf118527f43fa, type: 2}
-=======
   - {fileID: 4539016015776241205, guid: 45291dbe0500d0e4bbbb65cd340f1a40, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -20118,7 +20103,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
->>>>>>> cf16a9012b407110cf9090df7a606a1d7171a07c
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
