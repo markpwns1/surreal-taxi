@@ -19,11 +19,6 @@ public class DialogueHandler : MonoBehaviour
     private float nextPrintTime;
     private float printDelay;
 
-    public void Start()
-    {
-        StartDialogue();
-    }
-
     public void StartDialogue()
     {
         dialogue = gameObject.GetComponent<Text>();
