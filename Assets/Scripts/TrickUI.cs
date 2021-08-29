@@ -37,7 +37,7 @@ public class TrickUI : MonoBehaviour
         }
 
         trickUIPanel.SetActive(true);
-        arrow.localEulerAngles = new Vector3(0, angle, 0);
+        arrow.localEulerAngles = new Vector3(0, 0, angle);
         arrowImage.color = arrowColours[Random.Range(0, arrowColours.Length)];
     }
 
