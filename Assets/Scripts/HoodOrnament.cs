@@ -5,7 +5,7 @@ using UnityEngine;
 public class HoodOrnament : MonoBehaviour
 {
     private static GameObject instance;
-    private static AudioSource sfx;
+    private static AudioSource[] sfx;
 
     private static AudioSource[] talkSounds;
     private static AudioSource currentBabble;
@@ -15,7 +15,7 @@ public class HoodOrnament : MonoBehaviour
     private void Start()
     {
         instance = gameObject;
-        sfx = GetComponent<AudioSource>();
+        sfx = GetComponents<AudioSource>();
         instance.SetActive(false);
         talkSounds = talkSoundsParent.GetComponentsInChildren<AudioSource>();
         currentBabble = talkSounds[0];
@@ -28,10 +28,15 @@ public class HoodOrnament : MonoBehaviour
 
     public static void ActivateOrnament(bool b)
     {
-        instance.SetActive(b);
         if (b)
         {
-            sfx.Play();
+            instance.SetActive(b);
+            sfx[0].Play();
+        }
+        else
+        {
+            sfx[1].Play();
+            instance.SetActive(b);
         }
     }
 

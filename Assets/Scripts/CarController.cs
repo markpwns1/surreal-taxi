@@ -27,6 +27,17 @@ public class CarController : MonoBehaviour
     public float driftParticleIntensity;
     public int maxparticlesPerFrame = 50;
 
+    [Header("Noises")]
+    public AudioSource driveSfx;
+    public AudioSource driftSfx;
+
+    [Range(0, 1)]
+    public float driveSoundUpLerp, driveSoundDownLerp,
+        driftSoundUpLerp, driftSoundDownLerp;
+
+    private float driveVol = 0, maxDriveVol = .2f,
+        driftVol = 0, MaxDriftVol = .3f;
+
     public CarTilt tiltControls;
 
 
@@ -119,6 +130,15 @@ public class CarController : MonoBehaviour
                 rb.AddForce(body.up * jumpForce, ForceMode.Impulse);
             }
         }
+        else gas = 0;
+
+        // run drive sound
+        float lerp = driveSoundUpLerp;
+        float val = gas * maxDriveVol;
+        if (val < driveVol)
+            lerp = driveSoundDownLerp;
+        driveVol = Mathf.Lerp(driveVol, val, lerp);
+        driveSfx.volume = driveVol;
     }
 
     private void ApplyFriction()
@@ -218,8 +238,8 @@ public class CarController : MonoBehaviour
         ground = false;
 
         RaycastHit rayHit;
-        var hit = Physics.Raycast(rb.position + body.forward * 3.5f, 
-            Vector3.down, out rayHit);
+        var hit = Physics.Raycast(rb.position + body.forward * 1.25f, 
+            -body.up, out rayHit);
         ground = hit && rayHit.distance < groundThreshold;
         if (ground) surfaceNormal = rayHit.normal;
         else
@@ -297,8 +317,23 @@ public class CarController : MonoBehaviour
         else
             wheelParent.localRotation = Quaternion.identity;
 
-        if(ground)
+        if (ground)
+        {
             RunParticles(parAcc, perpAcc, normAcc);
+
+            //run drift sound
+            float lerp = driftSoundUpLerp;
+            float val = Mathf.Abs(perpAcc / 10) * MaxDriftVol;
+            if (val < driveVol)
+                lerp = driftSoundDownLerp;
+            driftVol = Mathf.Lerp(driftVol, val, lerp);
+            driftSfx.volume = driftVol;
+        }
+        else
+        {
+            driftVol = 0;
+            driftSfx.volume = driftVol;
+        }
     }
 
     private void RunParticles(float para, float perp, float norm)

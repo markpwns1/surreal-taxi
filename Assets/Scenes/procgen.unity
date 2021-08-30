@@ -1336,7 +1336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 29.900002, y: -59.722633}
+  m_AnchoredPosition: {x: 29.900002, y: -62.3}
   m_SizeDelta: {x: 264.2, y: 69.4452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1278397028
@@ -1495,7 +1495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1248794657}
-  payoutDecayFactor: 3.5
+  payoutDecayFactor: 0
   bigBackgroundExtraHeight: 8
 --- !u!1 &1971195507
 GameObject:
@@ -1567,7 +1567,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2052213361}
   - component: {fileID: 2052213360}
-  - component: {fileID: 2052213359}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -1575,14 +1574,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2052213359
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052213358}
-  m_Enabled: 0
 --- !u!20 &2052213360
 Camera:
   m_ObjectHideFlags: 0
@@ -1614,7 +1605,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2403,7 +2394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.653019, y: -28.31623}
+  m_AnchoredPosition: {x: 12.653015, y: -30.893593}
   m_SizeDelta: {x: -42.3442, y: -143.4616}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5857862206562169203

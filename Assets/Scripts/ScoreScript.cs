@@ -27,12 +27,12 @@ public class ScoreScript : MonoBehaviour
 
     void Update() {
         string s = "CAPITAL GENERATED: " + theScore.ToString("c2") +
-        "$ \nSTUNTS PERFORMED: " + stunts;
+        "\nSTUNTS PERFORMED: " + stunts;
         if (payout > 0)
         {
             background.rectTransform.sizeDelta =
                 backgroundSize + Vector2.up * bigBackgroundExtraHeight;
-            s += "\nPAYOUT: " + payout.ToString("c2") + "$";
+            s += "\nPAYOUT: " + payout.ToString("c2");
             payout -= Time.deltaTime * payoutDecayFactor;
         }
         else
