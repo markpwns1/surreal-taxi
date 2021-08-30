@@ -8,7 +8,8 @@ public class CarController : MonoBehaviour
 {
     [Header("Basic Attributes")]
     public float accelaration;
-    public float turnForce, backupTurnForce, airTurnForce, brakeForce;
+    public float turnForce, backupTurnForce, airTurnForce, brakeForce,
+        jumpForce;
     [Range(0, 1f)]
     public float wheelFriction, driftFriction, maxBrakeFriction;
 
@@ -23,7 +24,7 @@ public class CarController : MonoBehaviour
     public float maxTireAngle;
     public float tireSpeed, tireDriveSpeed;
     [Range(0, 2)]
-    public float driftParticleIntensity, driveParticleIntensity;
+    public float driftParticleIntensity;
     public int maxparticlesPerFrame = 50;
 
     public CarTilt tiltControls;
@@ -45,7 +46,7 @@ public class CarController : MonoBehaviour
     private float gas, turn, brake, rotation;
 
     private float groundThreshold, tireRot, fTireRot;
-    private bool tricks = false;
+    private bool tricks = false, jump;
     public static bool ground;
 
     private float groundTime;
@@ -111,7 +112,12 @@ public class CarController : MonoBehaviour
         {
             ApplyFriction();
             rb.AddForce(body.forward * gas * accelaration);
-            rb.AddForce(-Physics.gravity * 0.9f);
+            rb.AddForce(-Physics.gravity * 0.8f);
+            if (jump)
+            {
+                jump = false;
+                rb.AddForce(body.up * jumpForce, ForceMode.Impulse);
+            }
         }
     }
 
@@ -145,6 +151,7 @@ public class CarController : MonoBehaviour
     private void UpdateControls()
     {
         bool gasDecay = true, brakeDecay = true, turnDecay = true;
+        jump = false;
         Gamepad g = Gamepad.current;
         if (g != null)
         {
@@ -154,6 +161,8 @@ public class CarController : MonoBehaviour
             gasDecay = gas == 0;
             brake = g.leftTrigger.ReadValue();
             brakeDecay = brake == 0;
+
+            jump |= g.aButton.wasPressedThisFrame;
         }
         var k = Keyboard.current;
         if (k.wKey.isPressed || k.upArrowKey.isPressed)
@@ -176,6 +185,8 @@ public class CarController : MonoBehaviour
         gas = CleanInput(gas);
         turn = CleanInput(turn);
         brake = CleanInput(brake);
+
+        jump |= k.spaceKey.wasPressedThisFrame;
     }
 
     private float CleanInput(float f)
@@ -208,17 +219,17 @@ public class CarController : MonoBehaviour
 
         RaycastHit rayHit;
         var hit = Physics.Raycast(rb.position + body.forward * 3.5f, 
-            -body.up, out rayHit);
+            Vector3.down, out rayHit);
         ground = hit && rayHit.distance < groundThreshold;
         if (ground) surfaceNormal = rayHit.normal;
         else
         {
-            hit = Physics.Raycast(rb.position, -body.up, out rayHit);
+            hit = Physics.Raycast(rb.position, Vector3.down, out rayHit);
             ground = hit && rayHit.distance < groundThreshold;
             if (ground) surfaceNormal = rayHit.normal;
             else
             {
-                hit = Physics.Raycast(rb.position, Vector3.down, out rayHit);
+                hit = Physics.Raycast(rb.position, -body.up, out rayHit);
                 ground = hit && rayHit.distance < groundThreshold;
                 if (ground) surfaceNormal = rayHit.normal;
             }

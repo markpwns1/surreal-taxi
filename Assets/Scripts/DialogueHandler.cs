@@ -60,8 +60,8 @@ public class DialogueHandler : MonoBehaviour
         var sentences = generated.Split('.', '!', '?');
         FeedLine(sentences[0] + ".");
         FeedLine(sentences[1] + ".");
-        FeedLine("(LEFT CLICK TO END DIALOGUE)");
-        print(generated);
+        FeedLine("[LEFT CLICK TO END DIALOGUE]");
+        //print(generated);
     }
 
     public void FeedLine(string line)

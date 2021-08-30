@@ -5,12 +5,22 @@ using UnityEngine;
 public class Music : MonoBehaviour
 {
     public AudioSource alwaysMusic, groundOnlyAudio;
-    public float lerp;
+    public float lerp, airTimeThreshold;
+    [Range(0, 1)]
+    public float minVolume;
+
+    private float time;
+    private bool timeSet;
 
     void Update()
     {
-        float goal = 0;
-        if (CarController.ground) goal = 1;
+        float goal = 1;
+        if (!CarController.ground)
+        {
+            if (!timeSet) time = Time.deltaTime;
+            if (Time.time > time + airTimeThreshold) goal = minVolume;
+        }
+        else timeSet = false;
         groundOnlyAudio.volume = Mathf.Lerp(groundOnlyAudio.volume, goal, lerp);
     }
 }

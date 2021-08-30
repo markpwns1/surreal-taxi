@@ -18,7 +18,7 @@ public class TrickHandler : MonoBehaviour
     public AudioSource successSound;
 
     private TrickMove currentTrick;
-    public float time;
+    public float time, stuntPayout;
     private bool onAir = false, failed = false;
 
     private bool up, down, left, right;
@@ -113,7 +113,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
-                        ScoreScript.stunts++;
+                        ScoreScript.OnStunt(stuntPayout);
                     }
                     else if (currentTrick == TrickMove.DOWN
                         && !up
@@ -126,7 +126,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
-                        ScoreScript.stunts++;
+                        ScoreScript.OnStunt(stuntPayout);
                     }
                     else if (currentTrick == TrickMove.LEFT
                         && !up
@@ -139,7 +139,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
-                        ScoreScript.stunts++;
+                        ScoreScript.OnStunt(stuntPayout);
                     }
                     else if (currentTrick == TrickMove.RIGHT
                         && !up
@@ -152,7 +152,7 @@ public class TrickHandler : MonoBehaviour
                         time = Time.time;
                         successSound.Play();
                         NotifyUIOfTrickChange();
-                        ScoreScript.stunts++;
+                        ScoreScript.OnStunt(stuntPayout);
                     }
                     else if (up
                         || down

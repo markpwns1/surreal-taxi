@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b889cc03e11d6d04a87b895017c44418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alwaysMusic: {fileID: 9101508151541993618}
-  groundOnlyAudio: {fileID: 5781625977075317646}
-  lerp: 0.1
+  alwaysMusic: {fileID: 5781625977075317646}
+  groundOnlyAudio: {fileID: 9101508151541993618}
+  lerp: 0.05
+  airTimeThreshold: 0.35
+  minVolume: 0.15
 --- !u!82 &9101508151541993618
 AudioSource:
   m_ObjectHideFlags: 0
